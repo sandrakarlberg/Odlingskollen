@@ -18,11 +18,11 @@ Utbildare och mentorer: Ansvariga för att godkänna projektets genomförande.
 
 ## Val av teknologi och arkitektur
 - **Val av teknologier för frontend, backend och IoT**
--Frontend: React Native, Visual Studio Code, Tailwind, CSS, JavaScript
+- Frontend: React Native, Visual Studio Code, Tailwind, CSS, JavaScript
 
--Backend: Node.js, Express.js, JavaScript, Visual Studio Code
+- Backend: Node.js, Express.js, JavaScript, Visual Studio Code
 
--IoT: C++, Arduino mikrokontroller, Arduino IDE, Visual studio Code
+- IoT: C++, Arduino mikrokontroller, Arduino IDE, Visual studio Code
 
 - **Översikt över systemarkitekturen**
 
