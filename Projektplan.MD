@@ -67,9 +67,9 @@ Utbildare och mentorer: Ansvariga för att godkänna projektets genomförande.
 
 #När ni förväntar er att vara klara med:#
 - **Första fungerande prototypen (MVP)**
-- V 17, tror vi att MVP är klar.
+- V 19, tror vi att MVP är klar.
 - **Implementering av kärnfunktioner**
-- V 15, tror vi att alla gruppernas enskilda kärnfunktioner är klara.
+- V 17, tror vi att alla gruppernas enskilda kärnfunktioner är klara.
 - **Testning & optimering**
 - V 17-Framåt Testning och optimering kommer ske vartefter men kommer lägga större fokus när vi har en MVP.
 
