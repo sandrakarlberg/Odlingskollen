@@ -71,7 +71,7 @@ Utbildare och mentorer: Ansvariga för att godkänna projektets genomförande.
 - **Implementering av kärnfunktioner**
 - V 17, tror vi att alla gruppernas enskilda kärnfunktioner är klara.
 - **Testning & optimering**
-- V 17-Framåt Testning och optimering kommer ske vartefter men kommer lägga större fokus när vi har en MVP.
+- V 19-Framåt Testning och optimering kommer ske vartefter men kommer lägga större fokus när vi har en MVP.
 
 - **Hur teamet hanterar förändringar i tidsplanen om något tar längre tid än förväntat**
 - Vi stöttar varandra och kommunicerar kontinuerligt för att se om tidsplanen följs. För att snabbare kunna fokusera våra resurser där det mest krävs. Uppmuntrar alla till öppen kommunikation för att snabbt lokalisera potentiella förhinder.
