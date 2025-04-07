@@ -7,4 +7,6 @@
 | Temperature Sensor (Analog + Digital)    | 1   | 36:- | [Electrokit](https://www.electrokit.com/temperatursensor-analogdigital) |
 | Battery holder 6x AA kontakt (6F22)     | 1   | 23:- | [Electrokit](https://www.electrokit.com/batterihallare-6x-aa-kontakt-6f22) |
 | AA Batteries (1.5V, Varta, 10-pack)       | 1 pack | 55:- | [Electrokit](https://www.electrokit.com/aa-/-lr6-alkaliska-batterier-varta-10-pack) |
+| 24 AWG solid hook-up wire - 10 colors | 1 pack | 179:- | [Electrokit](https://www.electrokit.com/kopplingstrad-entradig-sats-60m) |
+| Soldering Wire | 1 roll | 169:- | [Electrokit](https://www.electrokit.com/lodtenn-0.6mm-blyfritt-100g) |
 ---
