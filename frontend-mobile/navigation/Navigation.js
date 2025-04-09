@@ -5,19 +5,28 @@ import Dashboard from "../screens/Dashboard";
 import Plants from "../screens/Plants";
 import Profile from "../screens/Profile";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { lightTheme } from "../theme/colors";
 
 const Tab = createBottomTabNavigator();
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarStyle: { backgroundColor: lightTheme.background },
+        }}
+      >
         <Tab.Screen
           name="Dashboard"
           component={Dashboard}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="view-dashboard" color={color} size={size} />
+              <MaterialCommunityIcons
+                name="view-dashboard"
+                color={lightTheme.secondary}
+                size={size}
+              />
             ),
           }}
         />
@@ -28,7 +37,7 @@ const Navigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="leaf"
-                color={color}
+                color={lightTheme.secondary}
                 size={size}
               />
             ),
@@ -41,7 +50,7 @@ const Navigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="account"
-                color={color}
+                color={lightTheme.secondary}
                 size={size}
               />
             ),
