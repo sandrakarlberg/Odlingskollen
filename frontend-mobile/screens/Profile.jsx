@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const About = () => {
+const Profile = () => {
   return (
     <View>
-      <Text>About</Text>
+      <Text>Profile</Text>
     </View>
   );
 };
 
-export default About;
+export default Profile;
 
 const styles = StyleSheet.create({});

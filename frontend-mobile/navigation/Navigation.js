@@ -1,8 +1,9 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/Home";
-import About from "../screens/About";
+import Dashboard from "../screens/Dashboard";
+import Plants from "../screens/Plants";
+import Profile from "../screens/Profile";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
@@ -12,21 +13,34 @@ const Navigation = () => {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
-          name="Home"
-          component={Home}
+          name="Dashboard"
+          component={Dashboard}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={size} />
+              <MaterialCommunityIcons name="view-dashboard" color={color} size={size} />
             ),
           }}
         />
         <Tab.Screen
-          name="About"
-          component={About}
+          name="Plants"
+          component={Plants}
           options={{
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
-                name="information"
+                name="leaf"
+                color={color}
+                size={size}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="account"
                 color={color}
                 size={size}
               />
