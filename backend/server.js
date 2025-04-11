@@ -20,6 +20,11 @@ app.get('/api/get-flowers', (req, res) => {
 
 // Lägg till blommor
 app.post('/api/add-flowers', (req, res) => {
+  if (!req.body.name) {
+    res.status(404).json({ error: 'No name request.' });
+    return;
+  }
+
   const flowers = {
     id: Date.now(),
     name: req.body.name,
@@ -35,7 +40,14 @@ app.post('/api/add-flowers', (req, res) => {
 
 // Ta bort blommor
 app.delete('/api/remove-flower/:id', (req, res) => {
-  databaseFlowers = databaseFlowers.filter((flower) => flower.id !== id);
+  const index = databaseFlowers.findIndex(
+    (flower) => flower.id === parseInt(req.params.id)
+  );
+
+  if (index === -1) return res.status(404).json({ error: 'Flower not found' });
+
+  databaseFlowers.splice(index, 1);
+  res.json({ message: 'Flower deleted' });
 });
 
 // Start server
