@@ -10,12 +10,12 @@ let databaseFlowers = [];
 
 // Test endpoint för server debugging
 app.get('/', (req, res) => {
-  res.json('Server is live');
+  res.status(200).json('Server is live');
 });
 
 // Hämta flower databas
 app.get('/api/get-flowers', (req, res) => {
-  res.json(databaseFlowers);
+  res.status(200).json(databaseFlowers);
 });
 
 // Lägg till blommor
@@ -28,7 +28,7 @@ app.post('/api/add-flowers', (req, res) => {
   const flowers = {
     id: Date.now(),
     name: req.body.name,
-    // specie: req.body.specie,
+    // specie: req.body.specie, // Nycklar som kanske bör finnas i databasen
     // moisture: req.body.moisture,
     // temperature: req.body.temperature,
     // humidity: req.body.humidity,
