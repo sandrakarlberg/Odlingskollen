@@ -66,6 +66,36 @@ app.put('/api/update-flower/:id', (req, res) => {
   res.json(databaseFlowers);
 });
 
+/* Users api endpoints */
+
+let users = [
+  { userId: 1, name: 'Bob', password: '123' },
+  { userId: 2, name: 'Jonas', password: 'hejsan' },
+  { userId: 3, name: 'Adam', password: 'potatis' },
+];
+
+// Hämta users
+app.get('/api/get-users', (req, res) => {
+  res.status(200).json(users);
+});
+
+// Skapa användare
+app.post('/api/create-user/', (req, res) => {
+  if (!req.body.name && !req.body.password) {
+    res.status(400).json({ error: 'No name request.' });
+    return;
+  }
+
+  const user = {
+    userId: Date.now(),
+    name: req.body.name,
+    password: req.body.password,
+  };
+
+  users.push(user);
+  res.json(users);
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is live http://localhost:${PORT}/`);
