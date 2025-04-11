@@ -21,7 +21,7 @@ app.get('/api/get-flowers', (req, res) => {
 // Lägg till blommor
 app.post('/api/add-flowers', (req, res) => {
   if (!req.body.name) {
-    res.status(404).json({ error: 'No name request.' });
+    res.status(400).json({ error: 'No name request.' });
     return;
   }
 
@@ -48,6 +48,22 @@ app.delete('/api/remove-flower/:id', (req, res) => {
 
   databaseFlowers.splice(index, 1);
   res.json({ message: 'Flower deleted' });
+});
+
+// Updatera blommor
+app.put('/api/update-flower/:id', (req, res) => {
+  if (!req.body.name) {
+    res.status(400).json({ error: 'No name request.' });
+    return;
+  }
+
+  const flower = databaseFlowers.find((f) => f.id === parseInt(req.params.id));
+
+  if (!flower) return res.status(404).json({ error: 'Flower not found' });
+
+  flower.name = req.body.name;
+
+  res.json(databaseFlowers);
 });
 
 // Start server
