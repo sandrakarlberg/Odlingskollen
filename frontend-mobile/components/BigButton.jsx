@@ -23,7 +23,7 @@ export default BigButton;
 const styles = StyleSheet.create({
   button: {
     borderRadius: 10,
-    width: 250,
+    width: "auto",
     padding: 12,
   },
   buttonText: {
