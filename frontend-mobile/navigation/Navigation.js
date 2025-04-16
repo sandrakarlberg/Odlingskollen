@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Dashboard from "../screens/Dashboard";
 import Plants from "../screens/Plants";
 import Profile from "../screens/Profile";
+import Settings from "../screens/Settings";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { lightTheme } from "../theme/colors";
 
@@ -50,6 +51,19 @@ const Navigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="account"
+                color={lightTheme.secondary}
+                size={size}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="tools"
                 color={lightTheme.secondary}
                 size={size}
               />
