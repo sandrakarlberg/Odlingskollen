@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, TextInput, View, SafeAreaView, Image } from "react-native";
 import React from "react";
 import { lightTheme } from "../theme/colors";
 import BigButton from "../components/BigButton";
@@ -12,6 +12,7 @@ const Login = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+        <Image source={require("../assets/icon-plant.png")} style={styles.Icon}/>
         <View>
           <TextInput placeholder="Email" keyboardType="email-address" style={styles.input}/>
           <TextInput placeholder="Password" secureTextEntry={true} style={styles.input}/>
@@ -40,5 +41,8 @@ const styles = StyleSheet.create({
   logInBtn: {
     width: 300,
     padding: 15,
+  },
+  Icon: {
+    marginBottom: 100,
   },
 });
