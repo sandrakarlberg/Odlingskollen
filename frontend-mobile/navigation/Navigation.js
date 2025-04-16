@@ -18,11 +18,11 @@ const Navigation = () => {
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
-            backgroundColor: "#A1A774",
+            backgroundColor: lightTheme.primary,
             // height: 85,
             borderTopWidth: 0,
           },
-          tabBarActiveTintColor: "#FFFFFF",
+          tabBarActiveTintColor: lightTheme.secondary,
           tabBarInactiveTintColor: "#E6E6E6",
           tabBarLabelStyle: {
             fontSize: 10,

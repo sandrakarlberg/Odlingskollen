@@ -2,7 +2,7 @@ export const lightTheme = {
   // Grundfärger
   primary: "#A1A774",
   secondary: "#FFFFFF",
-  accent: "#696D46",
+  accent: "#FFDE8D",
 
   // Layout och bakgrunder
   background: "#A1A774",
