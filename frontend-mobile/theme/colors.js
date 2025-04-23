@@ -3,12 +3,11 @@ export const lightTheme = {
   primary: "#A1A774",
   secondary: "#FFFFFF",
   accent: "#FFDE8D",
+  neutral: "#696D46",
 
   // Layout och bakgrunder
   background: "#A1A774",
   card: "#FFFFFF",
-  headerBackground: "#A1A774",
-  tabBackground: "#A1A774",
   lightButton: "#FFDE8D",
   darkButton: "#4A342B",
   neutralButton: "#696D46",

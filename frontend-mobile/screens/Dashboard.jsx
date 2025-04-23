@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 import DashboardHeader from "../components/DashboardHeader";
 import InfoCardSection from "../components/InfoCardSection";
+import SensorStatus from "../components/SensorStatus";
 import { lightTheme } from "../theme/colors";
 
 const Dashboard = () => {
@@ -12,6 +13,7 @@ const Dashboard = () => {
         user="Amanda"
       />
       <InfoCardSection />
+      <SensorStatus />
     </View>
   );
 };
