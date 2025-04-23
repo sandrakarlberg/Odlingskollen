@@ -5,6 +5,7 @@ import Dashboard from "../screens/Dashboard";
 import Plants from "../screens/Plants";
 import Profile from "../screens/Profile";
 import Settings from "../screens/Settings";
+import Notifications from "../screens/Notifications";
 import Login from "../screens/Login";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { lightTheme } from "../theme/colors";
@@ -19,7 +20,6 @@ const Navigation = () => {
           headerShown: false,
           tabBarStyle: {
             backgroundColor: lightTheme.primary,
-            // height: 85,
             borderTopWidth: 0,
           },
           tabBarActiveTintColor: lightTheme.secondary,
@@ -29,7 +29,7 @@ const Navigation = () => {
           },
         }}
       >
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Login"
           component={Login}
           options={{
@@ -41,7 +41,7 @@ const Navigation = () => {
               />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Dashboard"
           component={Dashboard}
@@ -62,6 +62,19 @@ const Navigation = () => {
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="leaf"
+                color={lightTheme.secondary}
+                size={size}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Alerts"
+          component={Notifications}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="bell"
                 color={lightTheme.secondary}
                 size={size}
               />

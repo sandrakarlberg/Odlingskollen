@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 300,
     padding: 15,
-    marginVertical: 10,
+    marginBottom: 10,
   },
   logInBtn: {
     width: 300,
