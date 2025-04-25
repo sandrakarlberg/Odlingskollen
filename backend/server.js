@@ -63,19 +63,24 @@ app.delete('/api/:userId/remove-flower/:flowerId', (req, res) => {
 });
 
 // Updatera blommor
-app.put('/api/update-flower/:id', (req, res) => {
+app.put('/api/:userId/update-flower/:flowerId', (req, res) => {
   if (!req.body.name) {
     res.status(400).json({ error: 'No name request.' });
     return;
   }
+  const userFind = users.find(
+    (user) => user.userId === parseInt(req.params.userId)
+  );
 
-  const flower = databaseFlowers.find((f) => f.id === parseInt(req.params.id));
+  const flower = userFind.flowers.find(
+    (f) => f.flowerId === parseInt(req.params.flowerId)
+  );
 
   if (!flower) return res.status(404).json({ error: 'Flower not found' });
 
   flower.name = req.body.name;
 
-  res.json(databaseFlowers);
+  res.json(userFind.flowers);
 });
 
 // User del---------------------------------------------
