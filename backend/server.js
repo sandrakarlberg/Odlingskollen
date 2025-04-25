@@ -23,7 +23,7 @@ app.get('/api/:userId/get-flowers', (req, res) => {
 });
 
 // Lägg till blommor
-app.post('/api/:userId/add-flowers', (req, res) => {
+app.post('/api/:userId/add-flower', (req, res) => {
   if (!req.body.name) {
     res.status(400).json({ error: 'No name request.' });
     return;
@@ -47,14 +47,18 @@ app.post('/api/:userId/add-flowers', (req, res) => {
 });
 
 // Ta bort blommor
-app.delete('/api/remove-flower/:id', (req, res) => {
-  const index = databaseFlowers.findIndex(
-    (flower) => flower.id === parseInt(req.params.id)
+app.delete('/api/:userId/remove-flower/:flowerId', (req, res) => {
+  const userFind = users.find(
+    (user) => user.userId === parseInt(req.params.userId)
+  );
+
+  const index = userFind.flowers.findIndex(
+    (flower) => flower.flowerId === parseInt(req.params.flowerId)
   );
 
   if (index === -1) return res.status(404).json({ error: 'Flower not found' });
 
-  databaseFlowers.splice(index, 1);
+  userFind.flowers.splice(index, 1);
   res.json({ message: 'Flower deleted' });
 });
 
@@ -87,31 +91,15 @@ let users = [
         flowerId: 1,
         name: 'Smörblomma',
       },
+      {
+        flowerId: 2,
+        name: 'Ros',
+      },
+      {
+        flowerId: 3,
+        name: 'Tulpan',
+      },
     ],
-  },
-  {
-    userId: 2,
-    name: 'Eve',
-    password: 'äpple',
-    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
-  },
-  {
-    userId: 3,
-    name: 'John',
-    password: 'banan',
-    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
-  },
-  {
-    userId: 4,
-    name: 'Jane',
-    password: 'päron',
-    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
-  },
-  {
-    userId: 5,
-    name: 'Bob',
-    password: 'druva',
-    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
   },
 ];
 
