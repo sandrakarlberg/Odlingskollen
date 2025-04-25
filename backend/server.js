@@ -96,6 +96,21 @@ app.post('/api/create-user/', (req, res) => {
   res.json(users);
 });
 
+app.post('/api/login', (req, res) => {
+  const { name, password } = req.body;
+
+  if (name !== users.name) {
+    return res.status(401).json({ message: 'Invalid user name' });
+  }
+
+  // No authentication yet
+  if (password !== users.password) {
+    return res.status(401).json({ message: 'Invalid password' });
+  }
+
+  res.json({ message: 'Login successful' });
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is live http://localhost:${PORT}/`);
