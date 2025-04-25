@@ -23,11 +23,15 @@ app.get('/api/:userId/get-flowers', (req, res) => {
 });
 
 // Lägg till blommor
-app.post('/api/add-flowers', (req, res) => {
+app.post('/api/:userId/add-flowers', (req, res) => {
   if (!req.body.name) {
     res.status(400).json({ error: 'No name request.' });
     return;
   }
+
+  const userFind = users.find(
+    (user) => user.userId === parseInt(req.params.userId)
+  );
 
   const flowers = {
     id: Date.now(),
@@ -38,8 +42,8 @@ app.post('/api/add-flowers', (req, res) => {
     // humidity: req.body.humidity,
   };
 
-  databaseFlowers.push(flowers);
-  res.json(databaseFlowers);
+  userFind.flowers.push(flowers);
+  res.json(userFind);
 });
 
 // Ta bort blommor
@@ -78,7 +82,12 @@ let users = [
     userId: 1,
     name: 'Adam',
     password: 'potatis',
-    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
+    flowers: [
+      {
+        flowerId: 1,
+        name: 'Smörblomma',
+      },
+    ],
   },
   {
     userId: 2,
