@@ -13,9 +13,13 @@ app.get('/', (req, res) => {
   res.status(200).json('Server is live');
 });
 
-// Hämta flower databas
-app.get('/api/get-flowers', (req, res) => {
-  res.status(200).json(databaseFlowers);
+// Hämta användarens flower databas
+app.get('/api/:userId/get-flowers', (req, res) => {
+  const userFind = users.find(
+    (user) => user.userId === parseInt(req.params.userId)
+  );
+
+  res.status(200).json(userFind.flowers);
 });
 
 // Lägg till blommor
@@ -66,15 +70,43 @@ app.put('/api/update-flower/:id', (req, res) => {
   res.json(databaseFlowers);
 });
 
+// User del---------------------------------------------
 /* Users api endpoints */
 
 let users = [
-  { userId: 1, name: 'Bob', password: '123' },
-  { userId: 2, name: 'Jonas', password: 'hejsan' },
-  { userId: 3, name: 'Adam', password: 'potatis' },
+  {
+    userId: 1,
+    name: 'Adam',
+    password: 'potatis',
+    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
+  },
+  {
+    userId: 2,
+    name: 'Eve',
+    password: 'äpple',
+    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
+  },
+  {
+    userId: 3,
+    name: 'John',
+    password: 'banan',
+    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
+  },
+  {
+    userId: 4,
+    name: 'Jane',
+    password: 'päron',
+    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
+  },
+  {
+    userId: 5,
+    name: 'Bob',
+    password: 'druva',
+    flowers: ['Smörblomma', 'Ros', 'Tulpan'],
+  },
 ];
 
-// Hämta users
+// Hämta alla users
 app.get('/api/get-users', (req, res) => {
   res.status(200).json(users);
 });
