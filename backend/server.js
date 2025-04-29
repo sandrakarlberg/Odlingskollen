@@ -118,6 +118,13 @@ let users = [
         name: 'Smörblomma',
         lastWatered: '2023-03-01',
         wateringInterval: 3, // days
+        moisture: 2,
+        flowerTemp: 15,
+        dirtTemp: 15,
+        sunlight: 33,
+        nitrogenLevel: 33,
+        phosphor: 12,
+        potatisum: 11,
       },
       {
         flowerId: 2,
