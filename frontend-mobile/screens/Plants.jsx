@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
 import { lightTheme } from "../theme/colors";
 import PlantFilter from "../components/PlantFilter";
 
 const Plants = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <PlantFilter />
-    </View>
+    </SafeAreaView>
   );
 };
 
