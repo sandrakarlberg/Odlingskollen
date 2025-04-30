@@ -26,7 +26,9 @@ const PlantFilter = () => {
             style={styles.button}
           />
         </View>
-        <TextInput style={styles.input} placeholder="Ange sökord" />
+        <View style={styles.inputContainer}>
+          <TextInput style={styles.input} placeholder="Ange sökord" />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -53,7 +55,6 @@ const styles = StyleSheet.create({
     width: 145,
   },
   buttonContainer: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
