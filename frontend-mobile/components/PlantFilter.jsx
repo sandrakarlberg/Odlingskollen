@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, SafeAreaView } from "react-native";
 import React from "react";
 import BigButton from "../components/BigButton";
 import { lightTheme } from "../theme/colors";
@@ -9,7 +9,7 @@ const PlantFilter = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.filterContainer}>
         <View style={styles.buttonContainer}>
           <BigButton
@@ -30,7 +30,7 @@ const PlantFilter = () => {
           <TextInput style={styles.input} placeholder="Ange sökord" />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
