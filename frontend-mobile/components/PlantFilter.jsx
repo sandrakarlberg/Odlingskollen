@@ -26,9 +26,7 @@ const PlantFilter = () => {
             style={styles.button}
           />
         </View>
-        <View style={styles.inputContainer}>
-          <TextInput style={styles.input} placeholder="Ange sökord" />
-        </View>
+        <TextInput style={styles.input} placeholder="Ange sökord" />
       </View>
     </SafeAreaView>
   );
