@@ -43,15 +43,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logInBtn: {
-    width: 300,
-    padding: 15,
   },
   createBtn: {
-    width: 300,
-    padding: 15,
   },
   createContainer: {
     marginTop: 100,
+    width: 300,
   },
   createText: {
     color: lightTheme.textPrimary,
