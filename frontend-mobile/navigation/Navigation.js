@@ -29,7 +29,7 @@ const Navigation = () => {
           },
         }}
       >
-        {/* <Tab.Screen
+        <Tab.Screen
           name="Login"
           component={Login}
           options={{
@@ -41,7 +41,7 @@ const Navigation = () => {
               />
             ),
           }}
-        /> */}
+        />
         <Tab.Screen
           name="Dashboard"
           component={Dashboard}
