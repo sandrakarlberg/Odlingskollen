@@ -2,13 +2,14 @@ import { StyleSheet, Text, Pressable } from "react-native";
 import React from "react";
 import { lightTheme } from "../theme/colors";
 
-const BigButton = ({ title, variant, onPress }) => {
+const BigButton = ({ title, variant, onPress, style }) => {
   return (
     <Pressable
       style={({ pressed }) => [
         styles.button,
         styles[variant],
         pressed && styles.buttonPressed,
+        style
       ]}
       activeStyle={[styles.button, styles[variant], styles.buttonActive]}
       onPress={onPress}
