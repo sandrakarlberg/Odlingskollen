@@ -11,6 +11,48 @@ app.get('/', (req, res) => {
   res.status(200).json('Server is live');
 });
 
+// --- Users hantering ---
+
+// Hämta alla users
+app.get('/api/get-users', (req, res) => {
+  res.status(200).json(users);
+});
+
+// Skapa användare
+app.post('/api/create-user/', (req, res) => {
+  if (!req.body.name || !req.body.password) {
+    res.status(400).json({ error: 'Missing name or password.' });
+    return;
+  }
+
+  const user = {
+    userId: Date.now(),
+    name: req.body.name,
+    password: req.body.password,
+    flowers: [],
+  };
+
+  users.push(user);
+  res.json(users);
+});
+
+// Users login
+app.post('/api/login', (req, res) => {
+  const { name, password } = req.body;
+
+  if (name !== users.name) {
+    return res.status(401).json({ message: 'Invalid user name' });
+  }
+
+  if (password !== users.password) {
+    return res.status(401).json({ message: 'Invalid password' });
+  }
+
+  res.json({ message: 'Login successful' });
+});
+
+// --- Flower-hantering ---
+
 // Hämta användarens flower databas
 app.get('/api/:userId/get-flowers', (req, res) => {
   const userFind = users.find(
@@ -126,44 +168,6 @@ let users = [
   //   ],
   // },
 ];
-
-// Hämta alla users
-app.get('/api/get-users', (req, res) => {
-  res.status(200).json(users);
-});
-
-// Skapa användare
-app.post('/api/create-user/', (req, res) => {
-  if (!req.body.name || !req.body.password) {
-    res.status(400).json({ error: 'Missing name or password.' });
-    return;
-  }
-
-  const user = {
-    userId: Date.now(),
-    name: req.body.name,
-    password: req.body.password,
-    flowers: [],
-  };
-
-  users.push(user);
-  res.json(users);
-});
-
-// Users login
-app.post('/api/login', (req, res) => {
-  const { name, password } = req.body;
-
-  if (name !== users.name) {
-    return res.status(401).json({ message: 'Invalid user name' });
-  }
-
-  if (password !== users.password) {
-    return res.status(401).json({ message: 'Invalid password' });
-  }
-
-  res.json({ message: 'Login successful' });
-});
 
 // Start server
 app.listen(PORT, () => {
