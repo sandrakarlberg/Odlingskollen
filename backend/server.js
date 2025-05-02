@@ -32,7 +32,7 @@ app.post('/api/:userId/add-flower', (req, res) => {
   );
 
   const flowers = {
-    id: Date.now(),
+    flowerId: Date.now(),
     name: req.body.name,
   };
 
@@ -81,52 +81,52 @@ app.put('/api/:userId/update-flower/:flowerId', (req, res) => {
 /* Users api endpoints */
 
 let users = [
-  {
-    userId: 1,
-    name: 'Adam',
-    password: 'potatis',
-    flowers: [
-      {
-        flowerId: 1,
-        name: 'Smörblomma',
-        lastWatered: '2023-03-01',
-        wateringInterval: 3, // days
-        moisture: 2,
-        flowerTemp: 15,
-        dirtTemp: 15,
-        sunlight: 33,
-        nitrogenLevel: 33,
-        phosphor: 12,
-        potatisum: 11,
-      },
-      {
-        flowerId: 2,
-        name: 'Ros',
-        lastWatered: '2023-03-02',
-        wateringInterval: 2, // days
-        moisture: 2,
-        flowerTemp: 15,
-        dirtTemp: 15,
-        sunlight: 33,
-        nitrogenLevel: 33,
-        phosphor: 12,
-        potatisum: 11,
-      },
-      {
-        flowerId: 3,
-        name: 'Tulpan',
-        lastWatered: '2023-03-03',
-        wateringInterval: 5, // days
-        moisture: 2,
-        flowerTemp: 15,
-        dirtTemp: 15,
-        sunlight: 33,
-        nitrogenLevel: 33,
-        phosphor: 12,
-        potatisum: 11,
-      },
-    ],
-  },
+  // {
+  //   userId: 1,
+  //   name: 'Adam',
+  //   password: 'potatis',
+  //   flowers: [
+  //     {
+  //       flowerId: 1,
+  //       name: 'Smörblomma',
+  //       lastWatered: '2023-03-01',
+  //       wateringInterval: 3, // days
+  //       moisture: 2,
+  //       flowerTemp: 15,
+  //       dirtTemp: 15,
+  //       sunlight: 33,
+  //       nitrogenLevel: 33,
+  //       phosphor: 12,
+  //       potatisum: 11,
+  //     },
+  //     {
+  //       flowerId: 2,
+  //       name: 'Ros',
+  //       lastWatered: '2023-03-02',
+  //       wateringInterval: 2, // days
+  //       moisture: 2,
+  //       flowerTemp: 15,
+  //       dirtTemp: 15,
+  //       sunlight: 33,
+  //       nitrogenLevel: 33,
+  //       phosphor: 12,
+  //       potatisum: 11,
+  //     },
+  //     {
+  //       flowerId: 3,
+  //       name: 'Tulpan',
+  //       lastWatered: '2023-03-03',
+  //       wateringInterval: 5, // days
+  //       moisture: 2,
+  //       flowerTemp: 15,
+  //       dirtTemp: 15,
+  //       sunlight: 33,
+  //       nitrogenLevel: 33,
+  //       phosphor: 12,
+  //       potatisum: 11,
+  //     },
+  //   ],
+  // },
 ];
 
 // Hämta alla users
