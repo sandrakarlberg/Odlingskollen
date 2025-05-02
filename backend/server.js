@@ -83,27 +83,6 @@ app.put('/api/:userId/update-flower/:flowerId', (req, res) => {
   res.json(userFind.flowers);
 });
 
-// Updatera lastwatered blommor
-app.put('/api/:userId/update-last-watered/:flowerId', (req, res) => {
-  if (!req.body.lastWatered) {
-    res.status(400).json({ error: 'No name request.' });
-    return;
-  }
-  const userFind = users.find(
-    (user) => user.userId === parseInt(req.params.userId)
-  );
-
-  const flower = userFind.flowers.find(
-    (f) => f.flowerId === parseInt(req.params.flowerId)
-  );
-
-  if (!flower) return res.status(404).json({ error: 'Flower not found' });
-
-  flower.lastWatered = req.body.lastWatered;
-
-  res.json(userFind.flowers);
-});
-
 // User del---------------------------------------------
 /* Users api endpoints */
 
