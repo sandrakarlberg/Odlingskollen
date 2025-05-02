@@ -6,8 +6,6 @@ const PORT = process.env.PORT || 3000;
 // Middleware för konvertera till json data
 app.use(express.json());
 
-let databaseFlowers = [];
-
 // Test endpoint för server debugging
 app.get('/', (req, res) => {
   res.status(200).json('Server is live');
@@ -36,10 +34,6 @@ app.post('/api/:userId/add-flower', (req, res) => {
   const flowers = {
     id: Date.now(),
     name: req.body.name,
-    // specie: req.body.specie, // Nycklar som kanske bör finnas i databasen
-    // moisture: req.body.moisture,
-    // temperature: req.body.temperature,
-    // humidity: req.body.humidity,
   };
 
   userFind.flowers.push(flowers);
@@ -110,12 +104,26 @@ let users = [
         name: 'Ros',
         lastWatered: '2023-03-02',
         wateringInterval: 2, // days
+        moisture: 2,
+        flowerTemp: 15,
+        dirtTemp: 15,
+        sunlight: 33,
+        nitrogenLevel: 33,
+        phosphor: 12,
+        potatisum: 11,
       },
       {
         flowerId: 3,
         name: 'Tulpan',
         lastWatered: '2023-03-03',
         wateringInterval: 5, // days
+        moisture: 2,
+        flowerTemp: 15,
+        dirtTemp: 15,
+        sunlight: 33,
+        nitrogenLevel: 33,
+        phosphor: 12,
+        potatisum: 11,
       },
     ],
   },
@@ -128,7 +136,7 @@ app.get('/api/get-users', (req, res) => {
 
 // Skapa användare
 app.post('/api/create-user/', (req, res) => {
-  if (!req.body.name && !req.body.password) {
+  if (!req.body.name || !req.body.password) {
     res.status(400).json({ error: 'No name request.' });
     return;
   }
