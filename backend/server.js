@@ -137,7 +137,7 @@ app.get('/api/get-users', (req, res) => {
 // Skapa användare
 app.post('/api/create-user/', (req, res) => {
   if (!req.body.name || !req.body.password) {
-    res.status(400).json({ error: 'No name request.' });
+    res.status(400).json({ error: 'Missing name or password.' });
     return;
   }
 
@@ -145,6 +145,7 @@ app.post('/api/create-user/', (req, res) => {
     userId: Date.now(),
     name: req.body.name,
     password: req.body.password,
+    flowers: [],
   };
 
   users.push(user);
