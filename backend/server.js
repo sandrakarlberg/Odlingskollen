@@ -77,9 +77,7 @@ app.put('/api/:userId/update-flower/:flowerId', (req, res) => {
   res.json(userFind.flowers);
 });
 
-// User del---------------------------------------------
-/* Users api endpoints */
-
+// Temporär databas users
 let users = [
   // {
   //   userId: 1,
@@ -152,6 +150,7 @@ app.post('/api/create-user/', (req, res) => {
   res.json(users);
 });
 
+// Users login
 app.post('/api/login', (req, res) => {
   const { name, password } = req.body;
 
