@@ -22,8 +22,8 @@ app.get('/api/:userId/get-flowers', (req, res) => {
 
 // Lägg till blommor
 app.post('/api/:userId/add-flower', (req, res) => {
-  if (!req.body.name) {
-    res.status(400).json({ error: 'No name request.' });
+  if (!req.body.flowerName) {
+    res.status(400).json({ error: 'No flower name provided.' });
     return;
   }
 
@@ -33,7 +33,7 @@ app.post('/api/:userId/add-flower', (req, res) => {
 
   const flowers = {
     flowerId: Date.now(),
-    name: req.body.name,
+    flowerName: req.body.flowerName,
   };
 
   userFind.flowers.push(flowers);
@@ -58,8 +58,8 @@ app.delete('/api/:userId/remove-flower/:flowerId', (req, res) => {
 
 // Updatera blommor
 app.put('/api/:userId/update-flower/:flowerId', (req, res) => {
-  if (!req.body.name) {
-    res.status(400).json({ error: 'No name request.' });
+  if (!req.body.flowerName) {
+    res.status(400).json({ error: 'No flower name provided.' });
     return;
   }
   const userFind = users.find(
@@ -72,7 +72,7 @@ app.put('/api/:userId/update-flower/:flowerId', (req, res) => {
 
   if (!flower) return res.status(404).json({ error: 'Flower not found' });
 
-  flower.name = req.body.name;
+  flower.flowerName = req.body.flowerName;
 
   res.json(userFind.flowers);
 });
@@ -86,9 +86,9 @@ let users = [
   //   flowers: [
   //     {
   //       flowerId: 1,
-  //       name: 'Smörblomma',
+  //       flowerName: 'Smörblomma',
   //       lastWatered: '2023-03-01',
-  //       wateringInterval: 3, // days
+  //       wateringInterval: 3,
   //       moisture: 2,
   //       flowerTemp: 15,
   //       dirtTemp: 15,
@@ -99,9 +99,9 @@ let users = [
   //     },
   //     {
   //       flowerId: 2,
-  //       name: 'Ros',
+  //       flowerName: 'Ros',
   //       lastWatered: '2023-03-02',
-  //       wateringInterval: 2, // days
+  //       wateringInterval: 2,
   //       moisture: 2,
   //       flowerTemp: 15,
   //       dirtTemp: 15,
@@ -112,9 +112,9 @@ let users = [
   //     },
   //     {
   //       flowerId: 3,
-  //       name: 'Tulpan',
+  //       flowerName: 'Tulpan',
   //       lastWatered: '2023-03-03',
-  //       wateringInterval: 5, // days
+  //       wateringInterval: 5,
   //       moisture: 2,
   //       flowerTemp: 15,
   //       dirtTemp: 15,
@@ -158,7 +158,6 @@ app.post('/api/login', (req, res) => {
     return res.status(401).json({ message: 'Invalid user name' });
   }
 
-  // No authentication yet
   if (password !== users.password) {
     return res.status(401).json({ message: 'Invalid password' });
   }
