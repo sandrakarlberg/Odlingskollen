@@ -71,10 +71,10 @@ app.get('/api/get-users', async (req, res) => {
 // Skapa användare
 app.post('/api/create-users', async (req, res) => {
   try {
-    const result = await pool.query(
-      'INSERT INTO users (name, password) VALUES ($1 , $2)',
-      [req.body.name, req.body.email]
-    );
+    await pool.query('INSERT INTO users (name, password) VALUES ($1 , $2)', [
+      req.body.name,
+      req.body.email,
+    ]);
     res.json({
       message: `Added ${req.body.name} ${req.body.email} to database `,
     });
@@ -102,32 +102,92 @@ app.post('/api/login', (req, res) => {
 // --- Flower-hantering ---
 
 // Hämta användarens flower databas
-app.get('/api/:userId/get-flowers', (req, res) => {
-  const userFind = users.find(
-    (user) => user.userId === parseInt(req.params.userId)
-  );
+// app.get('/api/:userId/get-flowers', (req, res) => {
+//   const userFind = users.find(
+//     (user) => user.userId === parseInt(req.params.userId)
+//   );
 
-  res.status(200).json(userFind.flowers);
+//   res.status(200).json(userFind.flowers);
+// });
+
+// Hämta användarens flower databas, funkar?
+app.get('/api/:userId/get-flowers', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const result = await pool.query(
+      `SELECT 
+        users.user_id, 
+        users.name, 
+        flowers.flower_id, 
+        flowers.flower_name, 
+        flowers.last_watered, 
+        flowers.moisture, 
+        flowers.sunlight
+      FROM users
+      JOIN flowers ON users.user_id = flowers.user_id
+      WHERE users.user_id = $1;`,
+      [userId]
+    );
+
+    res.json(result.rows); // skicka tillbaka blommorna
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
+  }
 });
 
 // Lägg till blommor
-app.post('/api/:userId/add-flower', (req, res) => {
-  if (!req.body.flowerName) {
-    res.status(400).json({ error: 'No flower name provided.' });
-    return;
+// app.post('/api/:userId/add-flower', (req, res) => {
+//   if (!req.body.flowerName) {
+//     res.status(400).json({ error: 'No flower name provided.' });
+//     return;
+//   }
+
+//   const userFind = users.find(
+//     (user) => user.userId === parseInt(req.params.userId)
+//   );
+
+//   const flowers = {
+//     flowerId: Date.now(),
+//     flowerName: req.body.flowerName,
+//   };
+
+//   userFind.flowers.push(flowers);
+//   res.json(userFind);
+// });
+
+app.post('/api/:userId/add-flower', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO flowers (
+  user_id, flower_name, last_watered, watering_interval, moisture,
+  flower_temp, dirt_temp, sunlight, nitrogen_level, phosphor, potatisum
+) VALUES
+  ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
+`,
+      [
+        userId,
+        req.body.flower_name,
+        req.body.last_watered,
+        req.body.watering_interval,
+        req.body.moisture,
+        req.body.flower_temp,
+        req.body.dirt_temp,
+        req.body.sunlight,
+        req.body.nitrogen_level,
+        req.body.phosphor,
+        req.body.potatisum,
+      ]
+    );
+
+    res.json(result.rows); // skicka tillbaka blommorna
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
   }
-
-  const userFind = users.find(
-    (user) => user.userId === parseInt(req.params.userId)
-  );
-
-  const flowers = {
-    flowerId: Date.now(),
-    flowerName: req.body.flowerName,
-  };
-
-  userFind.flowers.push(flowers);
-  res.json(userFind);
 });
 
 // Ta bort blommor
