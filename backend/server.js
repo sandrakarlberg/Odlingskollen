@@ -15,6 +15,15 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
+app.get('/get-database-test', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM users');
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 // Middleware för konvertera till json data
 app.use(express.json());
 
