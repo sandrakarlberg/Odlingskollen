@@ -97,8 +97,6 @@ app.get('/api/:userId/get-flowers', async (req, res) => {
 });
 
 // Lägg till blommor
-
-// Lägg till blommor
 app.post('/api/:userId/add-flower', async (req, res) => {
   const userId = req.params.userId;
 
