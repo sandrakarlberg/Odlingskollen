@@ -21,6 +21,7 @@ app.get('/get-database-test', async (req, res) => {
     res.json(result.rows);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
   }
 });
 
@@ -35,26 +36,52 @@ app.get('/', (req, res) => {
 // --- Users hantering ---
 
 // Hämta alla users
-app.get('/api/get-users', (req, res) => {
-  res.status(200).json(users);
+// app.get('/api/get-users', (req, res) => {
+//   res.status(200).json(users);
+// });
+
+app.get('/api/get-users', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM users');
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
+  }
 });
 
 // Skapa användare
-app.post('/api/create-user/', (req, res) => {
-  if (!req.body.name || !req.body.password) {
-    res.status(400).json({ error: 'Missing name or password.' });
-    return;
+// app.post('/api/create-user/', (req, res) => {
+//   if (!req.body.name || !req.body.password) {
+//     res.status(400).json({ error: 'Missing name or password.' });
+//     return;
+//   }
+
+//   const user = {
+//     userId: Date.now(),
+//     name: req.body.name,
+//     password: req.body.password,
+//     flowers: [],
+//   };
+
+//   users.push(user);
+//   res.json(users);
+// });
+
+// Skapa användare
+app.post('/api/create-users', async (req, res) => {
+  try {
+    const result = await pool.query(
+      'INSERT INTO users (name, password) VALUES ($1 , $2)',
+      [req.body.name, req.body.email]
+    );
+    res.json({
+      message: `Added ${req.body.name} ${req.body.email} to database `,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
   }
-
-  const user = {
-    userId: Date.now(),
-    name: req.body.name,
-    password: req.body.password,
-    flowers: [],
-  };
-
-  users.push(user);
-  res.json(users);
 });
 
 // Users login
