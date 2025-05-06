@@ -191,19 +191,36 @@ app.post('/api/:userId/add-flower', async (req, res) => {
 });
 
 // Ta bort blommor
-app.delete('/api/:userId/remove-flower/:flowerId', (req, res) => {
-  const userFind = users.find(
-    (user) => user.userId === parseInt(req.params.userId)
-  );
+// app.delete('/api/:userId/remove-flower/:flowerId', (req, res) => {
+//   const userFind = users.find(
+//     (user) => user.userId === parseInt(req.params.userId)
+//   );
 
-  const index = userFind.flowers.findIndex(
-    (flower) => flower.flowerId === parseInt(req.params.flowerId)
-  );
+//   const index = userFind.flowers.findIndex(
+//     (flower) => flower.flowerId === parseInt(req.params.flowerId)
+//   );
 
-  if (index === -1) return res.status(404).json({ error: 'Flower not found' });
+//   if (index === -1) return res.status(404).json({ error: 'Flower not found' });
 
-  userFind.flowers.splice(index, 1);
-  res.json({ message: 'Flower deleted' });
+//   userFind.flowers.splice(index, 1);
+//   res.json({ message: 'Flower deleted' });
+// });
+
+// Ta bort blommor
+app.delete('/api/:userId/remove-flower/:flowerId', async (req, res) => {
+  const userId = req.params.userId;
+  const flowerId = req.params.flowerId;
+
+  try {
+    await pool.query(
+      `DELETE FROM flowers WHERE user_id = $1 AND flower_id = $2;`,
+      [userId, flowerId]
+    );
+    res.json({ message: 'Tog bort blomma' }); // skicka tillbaka blommorna
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
+  }
 });
 
 // Updatera blommor
