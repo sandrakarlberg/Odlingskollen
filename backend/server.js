@@ -15,16 +15,6 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-app.get('/get-database-test', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM users');
-    res.json(result.rows);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
-  }
-});
-
 // Middleware för konvertera till json data
 app.use(express.json());
 
@@ -35,11 +25,7 @@ app.get('/', (req, res) => {
 
 // --- Users hantering ---
 
-// Hämta alla users
-// app.get('/api/get-users', (req, res) => {
-//   res.status(200).json(users);
-// });
-
+// Hämta användare
 app.get('/api/get-users', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users');
@@ -49,24 +35,6 @@ app.get('/api/get-users', async (req, res) => {
     res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
   }
 });
-
-// Skapa användare
-// app.post('/api/create-user/', (req, res) => {
-//   if (!req.body.name || !req.body.password) {
-//     res.status(400).json({ error: 'Missing name or password.' });
-//     return;
-//   }
-
-//   const user = {
-//     userId: Date.now(),
-//     name: req.body.name,
-//     password: req.body.password,
-//     flowers: [],
-//   };
-
-//   users.push(user);
-//   res.json(users);
-// });
 
 // Skapa användare
 app.post('/api/create-users', async (req, res) => {
@@ -101,15 +69,6 @@ app.post('/api/login', (req, res) => {
 
 // --- Flower-hantering ---
 
-// Hämta användarens flower databas
-// app.get('/api/:userId/get-flowers', (req, res) => {
-//   const userFind = users.find(
-//     (user) => user.userId === parseInt(req.params.userId)
-//   );
-
-//   res.status(200).json(userFind.flowers);
-// });
-
 // Hämta användarens flower databas, funkar?
 app.get('/api/:userId/get-flowers', async (req, res) => {
   const userId = req.params.userId;
@@ -138,25 +97,8 @@ app.get('/api/:userId/get-flowers', async (req, res) => {
 });
 
 // Lägg till blommor
-// app.post('/api/:userId/add-flower', (req, res) => {
-//   if (!req.body.flowerName) {
-//     res.status(400).json({ error: 'No flower name provided.' });
-//     return;
-//   }
 
-//   const userFind = users.find(
-//     (user) => user.userId === parseInt(req.params.userId)
-//   );
-
-//   const flowers = {
-//     flowerId: Date.now(),
-//     flowerName: req.body.flowerName,
-//   };
-
-//   userFind.flowers.push(flowers);
-//   res.json(userFind);
-// });
-
+// Lägg till blommor
 app.post('/api/:userId/add-flower', async (req, res) => {
   const userId = req.params.userId;
 
@@ -189,22 +131,6 @@ app.post('/api/:userId/add-flower', async (req, res) => {
     res.status(500).json({ error: 'Något gick fel vid databasförfrågan' });
   }
 });
-
-// Ta bort blommor
-// app.delete('/api/:userId/remove-flower/:flowerId', (req, res) => {
-//   const userFind = users.find(
-//     (user) => user.userId === parseInt(req.params.userId)
-//   );
-
-//   const index = userFind.flowers.findIndex(
-//     (flower) => flower.flowerId === parseInt(req.params.flowerId)
-//   );
-
-//   if (index === -1) return res.status(404).json({ error: 'Flower not found' });
-
-//   userFind.flowers.splice(index, 1);
-//   res.json({ message: 'Flower deleted' });
-// });
 
 // Ta bort blommor
 app.delete('/api/:userId/remove-flower/:flowerId', async (req, res) => {
