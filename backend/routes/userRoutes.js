@@ -1,18 +1,10 @@
 import express from 'express';
-import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import supabase from '../supabase/supabaseClient.js'; // Se till att du har rätt importväg
 
 dotenv.config();
 
 const router = express.Router();
-
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-});
 
 // --- Routes ---
 
@@ -23,11 +15,20 @@ router.get('/', (req, res) => {
 
 router.get('/api/get-users', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM users');
-    res.json(result.rows);
+    const { data, error } = await supabase
+      .from('users') // Hämta data från "users"-tabellen
+      .select('*'); // Välj alla kolumner
+
+    if (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ error: 'Something went wrong with the database request' });
+    }
+
+    res.json(data); // Skicka tillbaka användardatan
   } catch (error) {
     console.error(error);
-
     res
       .status(500)
       .json({ error: 'Something went wrong with the database request' });
@@ -36,28 +37,51 @@ router.get('/api/get-users', async (req, res) => {
 
 router.post('/api/create-users', async (req, res) => {
   try {
-    await pool.query('INSERT INTO users (name, password) VALUES ($1 , $2)', [
-      req.body.name,
-      req.body.email, // bör förmodligen vara req.body.password?
-    ]);
+    const { name, email, password } = req.body;
+
+    const { data, error } = await supabase
+      .from('users') // Ange tabellen som du vill sätta in data i
+      .insert([{ name, email, password }]); // Skicka med objektet för att skapa en ny användare
+
+    if (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ error: 'Something went wrong with the database request' });
+    }
 
     res.json({
-      message: `Added name: ${req.body.name} and email/password: ${req.body.email} to database `,
+      message: `Added name: ${name} and email/password to the database`,
     });
   } catch (error) {
     console.error(error);
-
     res
       .status(500)
       .json({ error: 'Something went wrong with the database request' });
   }
 });
 
-// Login fungerar inte än - users är inte definierad! Kanske egen route?
-router.post('/api/login', (req, res) => {
-  res
-    .status(501)
-    .json({ message: 'Login endpoint needs to be implemented properly' });
+// Login endpoint - måste implementeras
+router.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .eq('password', password) // Jämför både email och lösenord
+      .single(); // Vi förväntar oss endast en användare
+
+    if (error || !data) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    res.json({ message: 'Login successful', user: data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 export default router;
