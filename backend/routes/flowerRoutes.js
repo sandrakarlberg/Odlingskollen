@@ -93,5 +93,24 @@ router.delete('/api/:userId/remove-flower/:flowerId', async (req, res) => {
 });
 
 // Lägga till update flower
+router.put('/api/:userId/update-flower/:flowerId', async (req, res) => {
+  const userId = req.params.userId;
+  const flowerId = req.params.flowerId;
+
+  try {
+    const result = await pool.query(
+      `UPDATE flowers SET flower_name = $1 WHERE user_id = $2 AND flower_id = $3;`,
+      [req.body.flower_name, userId, flowerId]
+    );
+
+    res.json({ message: `Flower with ID: ${flowerId} has been updated!` });
+  } catch (error) {
+    console.error(error);
+
+    res
+      .status(500)
+      .json({ error: 'Something went wrong with the database request' });
+  }
+});
 
 export default router;

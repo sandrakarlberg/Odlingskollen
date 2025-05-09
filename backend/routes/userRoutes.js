@@ -59,3 +59,5 @@ router.post('/api/login', (req, res) => {
     .status(501)
     .json({ message: 'Login endpoint needs to be implemented properly' });
 });
+
+export default router;
