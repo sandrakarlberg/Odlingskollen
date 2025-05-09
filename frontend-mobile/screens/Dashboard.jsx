@@ -4,13 +4,16 @@ import DashboardHeader from "../components/DashboardHeader";
 import InfoCardSection from "../components/InfoCardSection";
 import SensorStatus from "../components/SensorStatus";
 import { lightTheme } from "../theme/colors";
+import { useUser } from "../context/UserContext";
 
 const Dashboard = () => {
+  const {username} = useUser();
+
   return (
     <SafeAreaView style={styles.container}>
       <DashboardHeader
         url={require("../assets/icon-farmer.png")}
-        user="Amanda"
+        user={username}
       />
       <InfoCardSection />
       <SensorStatus />
