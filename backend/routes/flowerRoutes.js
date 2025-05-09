@@ -64,7 +64,7 @@ router.post('/api/:userId/add-flower', async (req, res) => {
     sunlight: req.body.sunlight,
     nitrogen_level: req.body.nitrogen_level,
     phosphor: req.body.phosphor,
-    potatisum: req.body.potatisum,
+    potassium: req.body.potassium,
   };
 
   try {
