@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import swaggerDocs from './swagger.js';
 import userRoutes from './routes/userRoutes.js';
 import flowerRoutes from './routes/flowerRoutes.js';
 
@@ -31,4 +32,5 @@ app.use(flowerRoutes);
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is live http://localhost:${PORT}/`);
+  console.log(`Swagger docs documentation is available at http://localhost:${PORT}/api-docs`);
 });

@@ -9,10 +9,30 @@ const router = express.Router();
 // --- Routes ---
 
 // Server test
+
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Testar om servern är aktiv
+ *     responses:
+ *       200:
+ *         description: Server is live
+ */
+
 router.get('/', (req, res) => {
   res.status(200).json('Server is live');
 });
 
+/**
+ * @swagger
+ * /api/get-users:
+ *   get:
+ *     summary: Hämta alla användare
+ *     responses:
+ *       200:
+ *         description: Lyckad hämtning av användare
+ */
 router.get('/api/get-users', async (req, res) => {
   try {
     const { data, error } = await supabase
@@ -35,6 +55,32 @@ router.get('/api/get-users', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/create-users:
+ *   post:
+ *     summary: Skapa en ny användare
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - email
+ *               - password
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Användare skapad
+ */
 router.post('/api/create-users', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -62,6 +108,31 @@ router.post('/api/create-users', async (req, res) => {
 });
 
 // Login endpoint - måste implementeras
+/**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     summary: Logga in användare
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Inloggning lyckades
+ *       401:
+ *         description: Ogiltig e-post eller lösenord
+ */
 router.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 

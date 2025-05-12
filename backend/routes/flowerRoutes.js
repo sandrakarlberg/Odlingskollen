@@ -17,6 +17,21 @@ const router = express.Router();
 
 // --- Routes ---
 
+/**
+ * @swagger
+ * /api/{userId}/get-flowers:
+ *   get:
+ *     summary: Hämta alla blommor för en användare
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Lyckad hämtning av blommor
+ */
 router.get('/api/:userId/get-flowers', async (req, res) => {
   const userId = req.params.userId;
 
@@ -50,6 +65,48 @@ router.get('/api/:userId/get-flowers', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/{userId}/add-flower:
+ *   post:
+ *     summary: Lägg till en blomma för en användare
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               flower_name:
+ *                 type: string
+ *               last_watered:
+ *                 type: string
+ *               watering_interval:
+ *                 type: number
+ *               moisture:
+ *                 type: number
+ *               flower_temp:
+ *                 type: number
+ *               dirt_temp:
+ *                 type: number
+ *               sunlight:
+ *                 type: number
+ *               nitrogen_level:
+ *                 type: number
+ *               phosphor:
+ *                 type: number
+ *               potassium:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Blomma tillagd
+ */
 router.post('/api/:userId/add-flower', async (req, res) => {
   const userId = req.params.userId;
 
@@ -82,6 +139,26 @@ router.post('/api/:userId/add-flower', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/{userId}/remove-flower/{flowerId}:
+ *   delete:
+ *     summary: Ta bort en blomma
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: flowerId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Blomma borttagen
+ */
 router.delete('/api/:userId/remove-flower/:flowerId', async (req, res) => {
   const flowerId = req.params.flowerId;
   const userId = req.params.userId;
@@ -105,7 +182,35 @@ router.delete('/api/:userId/remove-flower/:flowerId', async (req, res) => {
   }
 });
 
-// Lägga till update flower
+/**
+ * @swagger
+ * /api/{userId}/update-flower/{flowerId}:
+ *   put:
+ *     summary: Uppdatera en blommas namn
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: flowerId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               flower_name:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Blomma uppdaterad
+ */
 router.put('/api/:userId/update-flower/:flowerId', async (req, res) => {
   const flowerId = req.params.flowerId;
   const userId = req.params.userId;
