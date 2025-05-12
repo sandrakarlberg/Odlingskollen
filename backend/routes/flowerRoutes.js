@@ -1,0 +1,237 @@
+import express from 'express';
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+import supabase from '../supabase/supabaseClient.js';
+
+dotenv.config();
+
+const router = express.Router();
+
+// const pool = new Pool({
+//   user: process.env.DB_USER,
+//   host: process.env.DB_HOST,
+//   database: process.env.DB_NAME,
+//   password: process.env.DB_PASSWORD,
+//   port: process.env.DB_PORT,
+// });
+
+// --- Routes ---
+
+/**
+ * @swagger
+ * /api/{userId}/get-flowers:
+ *   get:
+ *     summary: Hämta alla blommor för en användare
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Lyckad hämtning av blommor
+ */
+router.get('/api/:userId/get-flowers', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const { data, error } = await supabase
+      .from('flowers')
+      .select(
+        `
+        flower_id,
+        flower_name,
+        last_watered,
+        moisture,
+        sunlight,
+        users:user_id (
+          user_id,
+          name
+        )
+      `
+      )
+      .eq('user_id', userId);
+
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Supabase query failed' });
+    }
+
+    res.json(data);
+  } catch (error) {
+    console.error('Unexpected server error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+/**
+ * @swagger
+ * /api/{userId}/add-flower:
+ *   post:
+ *     summary: Lägg till en blomma för en användare
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               flower_name:
+ *                 type: string
+ *               last_watered:
+ *                 type: string
+ *               watering_interval:
+ *                 type: number
+ *               moisture:
+ *                 type: number
+ *               flower_temp:
+ *                 type: number
+ *               dirt_temp:
+ *                 type: number
+ *               sunlight:
+ *                 type: number
+ *               nitrogen_level:
+ *                 type: number
+ *               phosphor:
+ *                 type: number
+ *               potassium:
+ *                 type: number
+ *     responses:
+ *       200:
+ *         description: Blomma tillagd
+ */
+router.post('/api/:userId/add-flower', async (req, res) => {
+  const userId = req.params.userId;
+
+  const flower = {
+    user_id: userId,
+    flower_name: req.body.flower_name,
+    last_watered: req.body.last_watered,
+    watering_interval: req.body.watering_interval,
+    moisture: req.body.moisture,
+    flower_temp: req.body.flower_temp,
+    dirt_temp: req.body.dirt_temp,
+    sunlight: req.body.sunlight,
+    nitrogen_level: req.body.nitrogen_level,
+    phosphor: req.body.phosphor,
+    potassium: req.body.potassium,
+  };
+
+  try {
+    const { error } = await supabase.from('flowers').insert([flower]);
+
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Failed to insert flower' });
+    }
+
+    res.json({ message: 'Flower added!' });
+  } catch (error) {
+    console.error('Unexpected server error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+/**
+ * @swagger
+ * /api/{userId}/remove-flower/{flowerId}:
+ *   delete:
+ *     summary: Ta bort en blomma
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: flowerId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Blomma borttagen
+ */
+router.delete('/api/:userId/remove-flower/:flowerId', async (req, res) => {
+  const flowerId = req.params.flowerId;
+  const userId = req.params.userId;
+
+  try {
+    const { error } = await supabase
+      .from('flowers')
+      .delete()
+      .eq('flower_id', flowerId)
+      .eq('user_id', userId);
+
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Failed to delete flower' });
+    }
+
+    res.json({ message: `Flower with ID ${flowerId} has been removed!` });
+  } catch (error) {
+    console.error('Unexpected server error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+/**
+ * @swagger
+ * /api/{userId}/update-flower/{flowerId}:
+ *   put:
+ *     summary: Uppdatera en blommas namn
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: flowerId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               flower_name:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Blomma uppdaterad
+ */
+router.put('/api/:userId/update-flower/:flowerId', async (req, res) => {
+  const flowerId = req.params.flowerId;
+  const userId = req.params.userId;
+
+  try {
+    const { error } = await supabase
+      .from('flowers')
+      .update({ flower_name: req.body.flower_name })
+      .eq('flower_id', flowerId)
+      .eq('user_id', userId);
+
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Failed to update flower' });
+    }
+
+    res.json({ message: `Flower with ID ${flowerId} has been updated!` });
+  } catch (error) {
+    console.error('Unexpected server error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+export default router;
