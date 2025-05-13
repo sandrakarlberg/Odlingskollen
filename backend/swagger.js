@@ -1,6 +1,8 @@
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
+import fs from 'fs';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
+// Swagger config
 const options = {
     definition: {
         openapi: '3.0.0',
@@ -15,11 +17,16 @@ const options = {
             },
         ],
     },
-    apis: ['./routes/*.js'],
+    apis: ['./routes/*.js'], // justera sökvägen om nödvändigt
 };
 
+// Generera Swagger-specen
 const swaggerSpec = swaggerJSDoc(options);
 
-module.exports = (app) => {
+// Exportera som en funktion för att använda i app.js/server.js
+export default (app) => {
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 };
+
+// Skriv ut Swagger-specen till en fil
+fs.writeFileSync('./swagger-output.json', JSON.stringify(swaggerSpec, null, 2), 'utf8');
