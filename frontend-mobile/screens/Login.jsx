@@ -6,21 +6,40 @@ import {
   SafeAreaView,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { lightTheme } from "../theme/colors";
 import BigButton from "../components/BigButton";
 import { useUser } from "../context/UserContext";
+import { fetchUsers } from "../services/api";
 
 const Login = () => {
-  const { username, saveUsername } = useUser();
-  const [name, setName] = useState("");
+  const { saveUsername } = useUser();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchUsers();
+      if (data) setUsers(data);
+    };
+    fetchData();
+  }, []);
 
   const onPress = () => {
-    console.log("You pressed the button!");
+    console.log("Du tryckte på knappen för att skapa en ny användare.");
   };
 
   const handleSubmit = () => {
-    saveUsername(name.trim());
+    const foundUser = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (!foundUser) {
+      console.log("Fel inloggningsuppgifter, försök igen.");
+    } else {
+      saveUsername(foundUser.name);
+    }
   };
 
   return (
@@ -31,13 +50,15 @@ const Login = () => {
           placeholder="E-post"
           keyboardType="email-address"
           style={styles.input}
-          value={name}
-          onChangeText={setName}
+          value={email}
+          onChangeText={setEmail}
         />
         <TextInput
           placeholder="Lösenord"
           secureTextEntry={true}
           style={styles.input}
+          value={password}
+          onChangeText={setPassword}
         />
         <BigButton
           title="Logga in"
