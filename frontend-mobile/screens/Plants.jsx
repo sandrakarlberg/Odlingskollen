@@ -27,6 +27,21 @@ const Plants = () => {
               { name: "Citron 2", status: "Healty", type: "lemon" },
             ]}
           style={styles.CategoryCard}/>
+          <CategoryCard
+            title="Växthus 2"
+            plants={[
+              { name: "Citron 1", status: "Dying", type: "lemon" },
+              { name: "Citron 2", status: "Healty", type: "lemon" },
+            ]}
+          style={styles.CategoryCard}/>
+          <CategoryCard
+            title="Växthus 1"
+            plants={[
+              { name: "Tomat 1", status: "Healty", type: "tomato" },
+              { name: "Tomat 2", status: "Unhealty", type: "tomato" },
+              { name: "Tomat 3", status: "Healty", type: "tomato" },
+            ]}
+          style={styles.CategoryCard}/>
         </View>
       </ScrollView>
     </SafeAreaView>
