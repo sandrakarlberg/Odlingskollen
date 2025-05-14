@@ -4,7 +4,7 @@ import { lightTheme } from '../theme/colors';
 
 export default function PlantStatusIcon({ status }) {
   const backgroundColor =
-    status === 'Healty' ? '#3F6133' : status === 'Unhealty' ? '#FFDE8D' : status === 'Dying' ? '#FF0000' : 'grey';
+    status === 'Healthy' ? '#3F6133' : status === 'Unhealthy' ? '#FFDE8D' : status === 'Dying' ? '#FF0000' : 'grey';
 
   return <View style={[styles.statusIcon, { backgroundColor }]} />;
 }

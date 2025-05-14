@@ -8,17 +8,42 @@ const PlantDetails = ({ route }) => {
   const navigation = useNavigation();
   const { otherParams } = route.params;
 
+  const statusBackground =
+    otherParams.status === "Healthy"
+      ? "#3F6133"
+      : otherParams.status === "Unhealthy"
+      ? "#FFDE8D"
+      : otherParams.status === "Dying"
+      ? "#FF0000"
+      : "grey";
+
+  const statusText =
+    otherParams.status === "Healthy"
+      ? "#FFFFFF"
+      : otherParams.status === "Unhealthy"
+      ? "#000000"
+      : otherParams.status === "Dying"
+      ? "#FFFFFF"
+      : "grey";
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
         <BigButton
           title="Gå tillbaka"
-          variant="primary"
+          variant="secondary"
           onPress={() => navigation.navigate("Main")}
         />
-        <Text>{otherParams.name}</Text>
-        <Text>{otherParams.status}</Text>
-        <Text>{otherParams.type}</Text>
+        <Text style={styles.title}>{otherParams.name}</Text>
+        <Text
+          style={[
+            styles.status,
+            { backgroundColor: statusBackground, color: statusText },
+          ]}
+        >
+          {otherParams.status}
+        </Text>
+        <Text style={styles.type}>{otherParams.type}</Text>
       </View>
     </SafeAreaView>
   );
@@ -37,5 +62,25 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 20,
     height: 700,
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 30,
+  },
+  status: {
+    fontSize: 15,
+    textAlign: "center",
+    marginTop: 20,
+    width: 100,
+    borderRadius: 10,
+    padding: 10,
+    alignSelf: "center",
+  },
+  type: {
+    fontSize: 15,
+    textAlign: "center",
+    marginTop: 20,
   },
 });
