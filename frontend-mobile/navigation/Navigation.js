@@ -11,6 +11,7 @@ import Profile from "../screens/Profile";
 import Settings from "../screens/Settings";
 import Notifications from "../screens/Notifications";
 import Login from "../screens/Login";
+import PlantDetails from "../components/PlantDetails";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -109,7 +110,10 @@ const Navigation = () => {
         {!username ? (
           <Stack.Screen name="Login" component={Login} />
         ) : (
-          <Stack.Screen name="Main" component={TabNavigator} />
+          <>
+            <Stack.Screen name="Main" component={TabNavigator} />
+            <Stack.Screen name="Details" component={PlantDetails} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>

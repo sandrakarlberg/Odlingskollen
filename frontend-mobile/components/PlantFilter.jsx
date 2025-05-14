@@ -14,7 +14,6 @@ const PlantFilter = () => {
         <View style={styles.buttonContainer}>
           <BigButton
             title="Kategorier"
-            i
             variant="primary"
             onPress={handleButtonClick}
             style={styles.button}

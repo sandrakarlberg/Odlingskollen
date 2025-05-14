@@ -1,35 +1,41 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, } from 'react-native';
-import PlantStatusIcon from './PlantStatusIcon';
-import { lightTheme } from '../theme/colors';
-
+import React from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import PlantStatusIcon from "./PlantStatusIcon";
+import { lightTheme } from "../theme/colors";
+import { useNavigation } from "@react-navigation/native";
 
 export default function PlantItem({ name, status, type }) {
+  const navigation = useNavigation();
+
   const getIconSource = (type) => {
     switch (type) {
-      case 'tomato':
-        return require('../assets/icons8-tomato-48.png');
-      case 'lemon':
-        return require('../assets/icons8-citrus-48.png');
+      case "tomato":
+        return require("../assets/icons8-tomato-48.png");
+      case "lemon":
+        return require("../assets/icons8-citrus-48.png");
       default:
-        return require('../assets/icon-plant.png');
+        return require("../assets/icon-plant.png");
     }
   };
 
+  const handlePress = () => {
+    navigation.navigate("Details", { otherParams: {name: name, status: status, type: type} });
+  };
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
       <Image source={getIconSource(type)} style={styles.icon} />
       <Text style={styles.text}>{name}</Text>
       <PlantStatusIcon status={status} />
-    </View>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     borderColor: lightTheme.primary,
     borderWidth: 1,
     padding: 10,
@@ -39,7 +45,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   text: {
     flex: 1,
