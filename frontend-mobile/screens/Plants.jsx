@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: lightTheme.primary,
+    marginBottom: 45, //la till lite margin för annars hamnade knappen under navbar, märkte när jag höll på med navbar styling :)
   },
     content: {
   },
