@@ -14,7 +14,7 @@ const Profile = () => {
   return (
     <SafeAreaView style={styles.container}>
       <DashboardHeader
-        url={require("../assets/icon-farmer.png")}
+        url={require("../assets/icon-farmer-2.png")}
         user={username}
       />
       <BigButton
