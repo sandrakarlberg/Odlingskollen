@@ -58,7 +58,7 @@ const TabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Alerts"
         component={Notifications}
         options={{
@@ -70,7 +70,7 @@ const TabNavigator = () => {
             />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Profile"
         component={Profile}
@@ -84,7 +84,7 @@ const TabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Settings"
         component={Settings}
         options={{
@@ -96,7 +96,7 @@ const TabNavigator = () => {
             />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

@@ -31,7 +31,7 @@ const PlantDetails = ({ route }) => {
       <View style={styles.card}>
         <BigButton
           title="Gå tillbaka"
-          variant="primary"
+          variant="secondary"
           onPress={() => navigation.navigate("Main")}
         />
         <Text style={styles.title}>{otherParams.name}</Text>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 20,
+    marginTop: 30,
   },
   status: {
     fontSize: 15,
