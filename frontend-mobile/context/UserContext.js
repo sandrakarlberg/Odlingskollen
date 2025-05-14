@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("Sandra");
 
   useEffect(() => {
     const load = async () => {

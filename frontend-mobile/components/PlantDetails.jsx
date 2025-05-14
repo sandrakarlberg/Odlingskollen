@@ -8,6 +8,15 @@ const PlantDetails = ({ route }) => {
   const navigation = useNavigation();
   const { otherParams } = route.params;
 
+  const backgroundColor =
+    otherParams.status === "Healthy"
+      ? "#3F6133"
+      : otherParams.status === "Unhealthy"
+      ? "#FFDE8D"
+      : otherParams.status === "Dying"
+      ? "#FF0000"
+      : "grey";
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
@@ -16,9 +25,9 @@ const PlantDetails = ({ route }) => {
           variant="primary"
           onPress={() => navigation.navigate("Main")}
         />
-        <Text>{otherParams.name}</Text>
-        <Text>{otherParams.status}</Text>
-        <Text>{otherParams.type}</Text>
+        <Text style={styles.title}>{otherParams.name}</Text>
+        <Text style={styles.status}>{otherParams.status}</Text>
+        <Text style={styles.type}>{otherParams.type}</Text>
       </View>
     </SafeAreaView>
   );
@@ -37,5 +46,21 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 20,
     height: 700,
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 20,
+  },
+  status: {
+    fontSize: 15,
+    textAlign: "center",
+    marginTop: 20,
+  },
+  type: {
+    fontSize: 15,
+    textAlign: "center",
+    marginTop: 20,
   },
 });
