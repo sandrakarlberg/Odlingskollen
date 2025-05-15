@@ -1,10 +1,17 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import PlantStatusIcon from "./PlantStatusIcon";
 import { lightTheme } from "../theme/colors";
 import { useNavigation } from "@react-navigation/native";
 
-export default function PlantItem({ name, status, type }) {
+export default function PlantItem({
+  id,
+  name,
+  status,
+  type,
+  lastWatered,
+  moisture,
+  sunlight,
+}) {
   const navigation = useNavigation();
 
   const getIconSource = (type) => {
@@ -19,7 +26,17 @@ export default function PlantItem({ name, status, type }) {
   };
 
   const handlePress = () => {
-    navigation.navigate("Details", { otherParams: {name: name, status: status, type: type} });
+    navigation.navigate("Details", {
+      otherParams: {
+        id: id,
+        name: name,
+        status: status,
+        type: type,
+        lastWatered: lastWatered,
+        moisture: moisture,
+        sunlight: sunlight,
+      },
+    });
   };
 
   return (

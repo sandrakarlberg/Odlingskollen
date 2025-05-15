@@ -1,12 +1,30 @@
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { lightTheme } from "../theme/colors";
 import BigButton from "./BigButton";
+import PlantDetailsCards from "./PlantDetailsCards";
+import { format, parseISO } from "date-fns";
+import { sv } from "date-fns/locale";
 
 const PlantDetails = ({ route }) => {
   const navigation = useNavigation();
   const { otherParams } = route.params;
+
+  const values = [
+    { title: "Senast vattnad", value: otherParams.lastWatered },
+    {
+      title: "Fuktighet",
+      value: otherParams.moisture
+        ? `${otherParams.moisture}%`
+        : "Ej tillgänglig",
+    },
+    { title: "Solljus", value: "80%" },
+    { title: "Växtens temperatur", value: "18°C" },
+    { title: "Jordens temperatur", value: "15°C" },
+    { title: "Kvävenivå", value: "50 mg/kg" },
+    { title: "Fosfornivå", value: "115 mg/kg" },
+    { title: "Kaliumnivå", value: "123 mg/kg" },
+  ];
 
   const statusBackground =
     otherParams.status === "Healthy"
@@ -28,23 +46,39 @@ const PlantDetails = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.card}>
+      <ScrollView style={styles.card}>
         <BigButton
           title="Gå tillbaka"
           variant="secondary"
           onPress={() => navigation.goBack()}
         />
-        <Text style={styles.title}>{otherParams.name}</Text>
-        <Text
-          style={[
-            styles.status,
-            { backgroundColor: statusBackground, color: statusText },
-          ]}
-        >
-          {otherParams.status}
-        </Text>
-        <Text style={styles.type}>{otherParams.type}</Text>
-      </View>
+        <View style={styles.header}>
+          <Text style={styles.title}>{otherParams.name}</Text>
+          <Text
+            style={[
+              styles.status,
+              { backgroundColor: statusBackground, color: statusText },
+            ]}
+          >
+            {otherParams.status}
+          </Text>
+        </View>
+        <View style={styles.valueSection}>
+          {values.map((item, index) => (
+            <PlantDetailsCards
+              key={index}
+              title={item.title}
+              value={
+                item.title === "Senast vattnad" && item.value
+                  ? format(parseISO(item.value), "d MMM yyyy, HH:mm", {
+                      locale: sv,
+                    })
+                  : item.value
+              }
+            />
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -57,30 +91,36 @@ const styles = StyleSheet.create({
     backgroundColor: lightTheme.primary,
   },
   card: {
-    backgroundColor: "#FFFFFF",
     borderRadius: 10,
-    margin: 20,
-    padding: 20,
-    height: 700,
+    padding: 30,
   },
   title: {
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 30,
   },
   status: {
     fontSize: 15,
     textAlign: "center",
-    marginTop: 20,
+    marginTop: 10,
     width: 100,
     borderRadius: 10,
     padding: 10,
     alignSelf: "center",
   },
-  type: {
-    fontSize: 15,
-    textAlign: "center",
-    marginTop: 20,
+  header: {
+    backgroundColor: "#FFFFFF",
+    marginVertical: 20,
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+  },
+  valueSection: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
 });

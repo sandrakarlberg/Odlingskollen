@@ -1,36 +1,36 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const InfoCard = ({ title, info }) => {
+const PlantDetailsCards = ({ title, value }) => {
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.info}>{info}</Text>
+      <Text style={styles.value}>{value ?? "Ej tillgänglig"}</Text>
     </View>
   );
 };
 
-export default InfoCard;
+export default PlantDetailsCards;
 
 const styles = StyleSheet.create({
   card: {
+    width: "48%",
+    height: 200,
     backgroundColor: "#FFFFFF",
+    padding: 20,
     borderRadius: 10,
-    padding: 40,
-    width: 310,
-    height: 310,
-    margin: 10,
+    marginBottom: 12,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
   },
   title: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "bold",
+    marginBottom: 5,
   },
-  info: {
-    marginTop: 15,
-    fontSize: 15,
+  value: {
+    fontSize: 16,
   },
 });
