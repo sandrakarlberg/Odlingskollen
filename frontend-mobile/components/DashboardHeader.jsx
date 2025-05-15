@@ -6,7 +6,7 @@ const DashboardHeader = ({ url, user }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Image source={url} style={styles.headerIcon} />
-        <Text style={styles.headerText}>Hello, {user}</Text>
+        <Text style={styles.headerText}>Hej, {user}</Text>
       </View>
     </View>
   );

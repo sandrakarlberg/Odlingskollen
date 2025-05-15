@@ -6,18 +6,18 @@ const InfoCardSection = () => {
   const content = [
     {
       id: 1,
-      title: "Looks good!",
-      info: "The plants are getting enough sun, but the water levels are dropping.",
+      title: "Ser bra ut!",
+      info: "Växterna får tillräckligt med sol, men vattennivåerna har börjat sjunka.",
     },
     {
       id: 2,
-      title: "Looks okay.",
-      info: "The plants are getting enough sun, but the water levels are low.",
+      title: "Ser okej ut.",
+      info: "Växterna får tillräckligt med sol, men vattennivåerna är låga.",
     },
     {
       id: 3,
-      title: "Looks bad!",
-      info: "The plants are not getting enough sun and the water levels are too low.",
+      title: "Ser dåligt ut!",
+      info: "Växterna får inte tillräckligt med sol och vattennivåerna är för låga.",
     },
   ];
 
