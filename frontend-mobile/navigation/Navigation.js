@@ -13,6 +13,7 @@ import Settings from "../screens/Settings";
 import Notifications from "../screens/Notifications";
 import Login from "../screens/Login";
 import PlantDetails from "../components/PlantDetails";
+import AddPlant from "../components/AddPlant";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -113,6 +114,7 @@ const Navigation = () => {
           <>
             <Stack.Screen name="Main" component={TabNavigator} />
             <Stack.Screen name="Details" component={PlantDetails} />
+            <Stack.Screen name="AddPlant" component={AddPlant} />
           </>
         )}
       </Stack.Navigator>

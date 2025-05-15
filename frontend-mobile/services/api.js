@@ -11,7 +11,7 @@ export const fetchUsers = async () => {
 
 export const fetchPlants = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/1/get-flowers"); //Byt ut 1 till userId
+    const response = await fetch("http://localhost:3000/api/1/get-flowers");
     if (!response.ok) throw new Error("Fel vid hämtning av data.");
     return await response.json();
   } catch (error) {
@@ -20,9 +20,15 @@ export const fetchPlants = async () => {
   }
 };
 
-export const fetchPlantDetails = async () => {
+export const addPlant = async (name) => {
   try {
-    const response = await fetch("http://localhost:3000/api/1/get-flowers/1"); //Byt ut 1 till userId och flowerId
+    const response = await fetch("http://localhost:3000/api/1/add-flower", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ "flower_name": name }),
+    });
     if (!response.ok) throw new Error("Fel vid hämtning av data.");
     return await response.json();
   } catch (error) {

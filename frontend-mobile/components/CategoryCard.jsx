@@ -1,11 +1,27 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import PlantItem from "../components/PlantItem";
 import { lightTheme } from "../theme/colors";
+import { useNavigation } from "@react-navigation/native";
 
 export default function CategoryCard({ title, plants }) {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate("AddPlant");
+  };
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{title}</Text>
+      <Pressable onPress={handlePress} style={styles.addButton}>
+        <Text style={styles.addButtonText}>Lägg till växt</Text>
+      </Pressable>
       {plants.map((plant, index) => (
         <PlantItem key={index} {...plant} index={index} />
       ))}
@@ -29,6 +45,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  addButton: {
+    alignSelf: "center",
+    marginVertical: 15,
+    backgroundColor: lightTheme.darkButton,
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  addButtonText: {
+    color: "#FFFFFF",
+    fontWeight: 500,
   },
   showMoreButton: {
     backgroundColor: lightTheme.neutral,
