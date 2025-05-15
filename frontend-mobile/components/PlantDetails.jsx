@@ -32,7 +32,7 @@ const PlantDetails = ({ route }) => {
         <BigButton
           title="Gå tillbaka"
           variant="secondary"
-          onPress={() => navigation.navigate("Main")}
+          onPress={() => navigation.goBack()}
         />
         <Text style={styles.title}>{otherParams.name}</Text>
         <Text
