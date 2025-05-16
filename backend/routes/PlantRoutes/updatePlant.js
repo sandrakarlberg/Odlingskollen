@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import supabase from '../../supabase/supabaseClient.js';
+import { updatePlant } from '../../handlers/plants/updatePlantHandler.js';
 
 dotenv.config();
 
@@ -11,6 +11,8 @@ const router = express.Router();
  * /api/{userId}/update-flower/{flowerId}:
  *   put:
  *     summary: Uppdatera en blommas namn
+ *     tags:
+ *       - Flowers
  *     parameters:
  *       - in: path
  *         name: userId
@@ -28,44 +30,26 @@ const router = express.Router();
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - flower_name
  *             properties:
  *               flower_name:
  *                 type: string
  *     responses:
  *       200:
- *         description: Blomma uppdaterad
+ *         description: Växt uppdaterad
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Ogiltig begäran – växtnamn krävs
+ *       404:
+ *         description: Växt hittades inte
  */
-router.put('/api/:userId/update-flower/:flowerId', async (req, res) => {
-  const flowerId = req.params.flowerId;
-  const userId = req.params.userId;
-
-  if (!flower_name || flower_name.trim() === '') {
-    return res.status(400).json({ error: 'Flower name is required' });
-  }
-
-  try {
-    const { error } = await supabase
-      .from('flowers')
-      .update({ flower_name: req.body.flower_name })
-      .eq('flower_id', flowerId)
-      .eq('user_id', userId);
-
-    if (error) {
-      const err = new Error('Supabase query failed');
-      err.status = 500;
-      return next(err);
-    }
-
-    if (!data || data.length === 0) {
-      return res.status(404).json({ error: 'Flower not found' });
-    }
-
-    res
-      .status(200)
-      .json({ message: `Flower with ID ${flowerId} has been updated!` });
-  } catch (error) {
-    next(error);
-  }
-});
+router.put('/api/:userId/update-flower/:flowerId', updatePlant);
 
 export default router;

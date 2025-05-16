@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import supabase from '../../supabase/supabaseClient.js';
+import { addPlant } from '../../handlers/plants/addPlantHandler.js';
 
 dotenv.config();
 
@@ -11,23 +11,29 @@ const router = express.Router();
  * /api/{userId}/add-flower:
  *   post:
  *     summary: Lägg till en blomma för en användare
+ *     tags:
+ *       - Flowers
  *     parameters:
  *       - in: path
  *         name: userId
  *         required: true
  *         schema:
  *           type: string
+ *         description: ID för användaren
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - flower_name
  *             properties:
  *               flower_name:
  *                 type: string
  *               last_watered:
  *                 type: string
+ *                 format: date-time
  *               watering_interval:
  *                 type: number
  *               moisture:
@@ -46,38 +52,17 @@ const router = express.Router();
  *                 type: number
  *     responses:
  *       200:
- *         description: Blomma tillagd
+ *         description: Växt tillagd
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Ogiltig begäran – växtnamn
  */
-router.post('/api/:userId/add-flower', async (req, res) => {
-  const userId = req.params.userId;
-
-  const flower = {
-    user_id: userId,
-    flower_name: req.body.flower_name,
-    last_watered: req.body.last_watered,
-    watering_interval: req.body.watering_interval,
-    moisture: req.body.moisture,
-    flower_temp: req.body.flower_temp,
-    dirt_temp: req.body.dirt_temp,
-    sunlight: req.body.sunlight,
-    nitrogen_level: req.body.nitrogen_level,
-    phosphor: req.body.phosphor,
-    potassium: req.body.potassium,
-  };
-
-  try {
-    const { error } = await supabase.from('flowers').insert([flower]);
-
-    if (error) {
-      const err = new Error('Supabase query failed');
-      err.status = 500;
-      return next(err);
-    }
-
-    res.json({ message: 'Flower added!' });
-  } catch (error) {
-    next(error);
-  }
-});
+router.post('/api/:userId/add-flower', addPlant);
 
 export default router;

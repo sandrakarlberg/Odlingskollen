@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import supabase from '../../supabase/supabaseClient.js';
+import { getPlants } from '../../handlers/plants/getPlantsHandler.js';
 
 dotenv.config();
 
@@ -10,7 +10,9 @@ const router = express.Router();
  * @swagger
  * /api/{userId}/get-flowers:
  *   get:
- *     summary: Hämta alla blommor för en användare
+ *     summary: Hämta alla växter för en användare
+ *     tags:
+ *       - Flowers
  *     parameters:
  *       - in: path
  *         name: userId
@@ -19,39 +21,35 @@ const router = express.Router();
  *           type: string
  *     responses:
  *       200:
- *         description: Lyckad hämtning av blommor
+ *         description: Lyckad hämtning av växter
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   flower_id:
+ *                     type: string
+ *                   flower_name:
+ *                     type: string
+ *                   last_watered:
+ *                     type: string
+ *                     format: date-time
+ *                   moisture:
+ *                     type: number
+ *                   sunlight:
+ *                     type: number
+ *                   users:
+ *                     type: object
+ *                     properties:
+ *                       user_id:
+ *                         type: string
+ *                       name:
+ *                         type: string
+ *       404:
+ *         description: Inga växter hittades
  */
-router.get('/api/:userId/get-flowers', async (req, res) => {
-  const userId = req.params.userId;
-
-  try {
-    const { data, error } = await supabase
-      .from('flowers')
-      .select(
-        `
-        flower_id,
-        flower_name,
-        last_watered,
-        moisture,
-        sunlight,
-        users:user_id (
-          user_id,
-          name
-        )
-      `
-      )
-      .eq('user_id', userId);
-
-    if (error) {
-      const err = new Error('Supabase query failed');
-      err.status = 500;
-      return next(err);
-    }
-
-    res.json(data);
-  } catch (error) {
-    next(error);
-  }
-});
+router.get('/api/:userId/get-flowers', getPlants);
 
 export default router;

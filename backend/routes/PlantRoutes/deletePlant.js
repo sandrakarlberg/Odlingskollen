@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import supabase from '../../supabase/supabaseClient.js';
+import { deletePlant } from '../../handlers/plants/deletePlantHandler.js';
 
 dotenv.config();
 
@@ -10,7 +10,9 @@ const router = express.Router();
  * @swagger
  * /api/{userId}/remove-flower/{flowerId}:
  *   delete:
- *     summary: Ta bort en blomma
+ *     summary: Ta bort en växt
+ *     tags:
+ *       - Flowers
  *     parameters:
  *       - in: path
  *         name: userId
@@ -24,29 +26,17 @@ const router = express.Router();
  *           type: string
  *     responses:
  *       200:
- *         description: Blomma borttagen
+ *         description: Växt borttagen
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Växt hittades inte
  */
-router.delete('/api/:userId/remove-flower/:flowerId', async (req, res) => {
-  const flowerId = req.params.flowerId;
-  const userId = req.params.userId;
-
-  try {
-    const { error } = await supabase
-      .from('flowers')
-      .delete()
-      .eq('flower_id', flowerId)
-      .eq('user_id', userId);
-
-    if (error) {
-      const err = new Error('Supabase query failed');
-      err.status = 500;
-      return next(err);
-    }
-
-    res.json({ message: `Flower with ID ${flowerId} has been removed!` });
-  } catch (error) {
-    next(error);
-  }
-});
+router.delete('/api/:userId/remove-flower/:flowerId', deletePlant);
 
 export default router;

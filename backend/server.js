@@ -19,5 +19,7 @@ app.use(errorHandler);
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is live http://localhost:${PORT}/`);
-  console.log(`Swagger docs documentation is available at http://localhost:${PORT}/api-docs`);
+  console.log(
+    `Swagger docs documentation is available at http://localhost:${PORT}/api-docs`
+  );
 });
