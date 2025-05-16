@@ -58,6 +58,10 @@ router.put('/api/:userId/update-flower/:flowerId', async (req, res) => {
       return next(err);
     }
 
+    if (!data || data.length === 0) {
+      return res.status(404).json({ error: 'Flower not found' });
+    }
+
     res.status(200).json({ message: `Flower with ID ${flowerId} has been updated!` });
   } catch (error) {
     next(error);
