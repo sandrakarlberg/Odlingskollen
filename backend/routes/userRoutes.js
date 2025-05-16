@@ -8,8 +8,6 @@ const router = express.Router();
 
 // --- Routes ---
 
-// Server test
-
 /**
  * @swagger
  * /:
@@ -36,8 +34,8 @@ router.get('/', (req, res) => {
 router.get('/api/get-users', async (req, res) => {
   try {
     const { data, error } = await supabase
-      .from('users') // Hämta data från "users"-tabellen
-      .select('*'); // Välj alla kolumner
+      .from('users') 
+      .select('*');
 
     if (error) {
       console.error(error);
@@ -46,7 +44,7 @@ router.get('/api/get-users', async (req, res) => {
         .json({ error: 'Something went wrong with the database request' });
     }
 
-    res.json(data); // Skicka tillbaka användardatan
+    res.json(data);
   } catch (error) {
     console.error(error);
     res
@@ -86,8 +84,8 @@ router.post('/api/create-users', async (req, res) => {
     const { name, email, password } = req.body;
 
     const { data, error } = await supabase
-      .from('users') // Ange tabellen som du vill sätta in data i
-      .insert([{ name, email, password }]); // Skicka med objektet för att skapa en ny användare
+      .from('users')
+      .insert([{ name, email, password }]); 
 
     if (error) {
       console.error(error);
@@ -141,8 +139,8 @@ router.post('/api/login', async (req, res) => {
       .from('users')
       .select('*')
       .eq('email', email)
-      .eq('password', password) // Jämför både email och lösenord
-      .single(); // Vi förväntar oss endast en användare
+      .eq('password', password)
+      .single();
 
     if (error || !data) {
       return res.status(401).json({ message: 'Invalid email or password' });

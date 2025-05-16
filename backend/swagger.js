@@ -20,13 +20,11 @@ const options = {
     apis: ['./routes/*.js'], // justera sökvägen om nödvändigt
 };
 
-// Generera Swagger-specen
 const swaggerSpec = swaggerJSDoc(options);
 
-// Exportera som en funktion för att använda i app.js/server.js
 export default (app) => {
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 };
 
-// Skriv ut Swagger-specen till en fil
+// Uppdates swagger-spec.json
 fs.writeFileSync('./swagger-output.json', JSON.stringify(swaggerSpec, null, 2), 'utf8');
