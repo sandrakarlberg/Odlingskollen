@@ -19,7 +19,6 @@ app.use(userRoutes);
 app.use(plantRoutes);
 app.use(errorHandler);
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server is live http://localhost:${PORT}/`);
   console.log(

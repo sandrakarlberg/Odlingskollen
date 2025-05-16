@@ -6,8 +6,6 @@ dotenv.config();
 
 const router = express.Router();
 
-// --- Routes ---
-
 /**
  * @swagger
  * /:
@@ -33,9 +31,7 @@ router.get('/', (req, res) => {
  */
 router.get('/api/get-users', async (req, res) => {
   try {
-    const { data, error } = await supabase
-      .from('users') 
-      .select('*');
+    const { data, error } = await supabase.from('users').select('*');
 
     if (error) {
       console.error(error);
@@ -85,7 +81,7 @@ router.post('/api/create-users', async (req, res) => {
 
     const { data, error } = await supabase
       .from('users')
-      .insert([{ name, email, password }]); 
+      .insert([{ name, email, password }]);
 
     if (error) {
       console.error(error);
@@ -105,7 +101,6 @@ router.post('/api/create-users', async (req, res) => {
   }
 });
 
-// Login endpoint - måste implementeras
 /**
  * @swagger
  * /api/login:

@@ -7,7 +7,6 @@ import updatePlant from './updatePlant.js';
 
 const router = express.Router();
 
-// --- Routes ---
 router.use(getPlants);
 router.use(addPlant);
 router.use(deletePlant);
