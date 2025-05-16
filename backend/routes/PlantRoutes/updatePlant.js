@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import supabase from '../supabase/supabaseClient.js';
+import supabase from '../../supabase/supabaseClient.js';
 
 dotenv.config();
 
@@ -50,8 +50,6 @@ router.put('/api/:userId/update-flower/:flowerId', async (req, res) => {
       .eq('flower_id', flowerId)
       .eq('user_id', userId);
 
-
-
     if (error) {
       const err = new Error('Supabase query failed');
       err.status = 500;
@@ -62,7 +60,9 @@ router.put('/api/:userId/update-flower/:flowerId', async (req, res) => {
       return res.status(404).json({ error: 'Flower not found' });
     }
 
-    res.status(200).json({ message: `Flower with ID ${flowerId} has been updated!` });
+    res
+      .status(200)
+      .json({ message: `Flower with ID ${flowerId} has been updated!` });
   } catch (error) {
     next(error);
   }

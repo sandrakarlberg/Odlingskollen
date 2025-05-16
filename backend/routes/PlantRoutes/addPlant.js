@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import supabase from '../supabase/supabaseClient.js';
+import supabase from '../../supabase/supabaseClient.js';
 
 dotenv.config();
 
@@ -70,7 +70,7 @@ router.post('/api/:userId/add-flower', async (req, res) => {
 
     if (error) {
       const err = new Error('Supabase query failed');
-      err.status = 500; 
+      err.status = 500;
       return next(err);
     }
 
