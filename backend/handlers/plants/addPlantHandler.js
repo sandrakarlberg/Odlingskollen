@@ -3,10 +3,6 @@ import supabase from '../../supabase/supabaseClient.js';
 export const addPlant = async (req, res, next) => {
   const userId = req.params.userId;
 
-  if (!flower_name || flower_name.trim() === '') {
-    return res.status(400).json({ error: 'Flower name is required' });
-  }
-
   const flower = {
     user_id: userId,
     flower_name: req.body.flower_name,
@@ -20,6 +16,10 @@ export const addPlant = async (req, res, next) => {
     phosphor: req.body.phosphor,
     potassium: req.body.potassium,
   };
+
+  if (!req.body.flower_name || req.body.flower_name.trim() === '') {
+    return res.status(400).json({ error: 'Flower name is required' });
+  }
 
   try {
     const { error } = await supabase.from('flowers').insert([flower]);

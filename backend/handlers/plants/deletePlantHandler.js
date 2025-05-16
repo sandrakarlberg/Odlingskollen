@@ -5,11 +5,12 @@ export const deletePlant = async (req, res, next) => {
   const userId = req.params.userId;
 
   try {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('flowers')
       .delete()
       .eq('flower_id', flowerId)
-      .eq('user_id', userId);
+      .eq('user_id', userId)
+      .select();
 
     if (error) {
       return next(new Error('Supabase query failed'));

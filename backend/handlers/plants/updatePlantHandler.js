@@ -4,16 +4,17 @@ export const updatePlant = async (req, res, next) => {
   const flowerId = req.params.flowerId;
   const userId = req.params.userId;
 
-  if (!flower_name || flower_name.trim() === '') {
+  if (!req.body.flower_name || req.body.flower_name.trim() === '') {
     return res.status(400).json({ error: 'Flower name is required' });
   }
 
   try {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('flowers')
       .update({ flower_name: req.body.flower_name })
       .eq('flower_id', flowerId)
-      .eq('user_id', userId);
+      .eq('user_id', userId)
+      .select();
 
     if (error) {
       return next(new Error('Supabase query failed'));
