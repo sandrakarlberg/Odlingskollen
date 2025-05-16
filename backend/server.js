@@ -2,7 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import swaggerDocs from './swagger.js';
 import userRoutes from './routes/userRoutes.js';
-import flowerRoutes from './routes/flowerRoutes.js';
+import plantRoutes from './routes/PlantRoutes/index.js';
+import errorHandler from './middleware/errorHandler.js';
 
 dotenv.config();
 
@@ -12,22 +13,8 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 app.use(userRoutes);
-app.use(flowerRoutes);
-
-// // Users login
-// app.post('/api/login', (req, res) => {
-//   const { name, password } = req.body;
-
-//   if (name !== users.name) {
-//     return res.status(401).json({ message: 'Invalid user name' });
-//   }
-
-//   if (password !== users.password) {
-//     return res.status(401).json({ message: 'Invalid password' });
-//   }
-
-//   res.json({ message: 'Login successful' });
-// });
+app.use(plantRoutes);
+app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
