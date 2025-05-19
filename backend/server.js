@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import swaggerDocs from './swagger.js';
 import userRoutes from './routes/userRoutes.js';
 import plantRoutes from './routes/PlantRoutes/index.js';
+import sensorRoutes from './routes/sensors/sensorRoutes.js';
 import errorHandler from './middleware/errorHandler.js';
 import cors from 'cors';
 
@@ -15,8 +16,11 @@ app.use(cors());
 
 // Middleware
 app.use(express.json());
+
 app.use(userRoutes);
+app.use(sensorRoutes); // denna ordning fixade en bug smh
 app.use(plantRoutes);
+
 app.use(errorHandler);
 
 app.listen(PORT, () => {
