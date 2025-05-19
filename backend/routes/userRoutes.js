@@ -146,7 +146,7 @@ router.post('/api/login', async (req, res) => {
 
     const isPasswordCorrect = await bcrypt.compare(password, data.password);
     if (!isPasswordCorrect) {
-      return res.status(401).json({ message: 'Invalid password' });
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
 
     const token = jwt.sign(
@@ -155,7 +155,7 @@ router.post('/api/login', async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    res.json({ message: 'Login successful', user: token });
+    res.json({ message: 'Login successful', token: token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
