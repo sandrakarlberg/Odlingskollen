@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import supabase from '../supabase/supabaseClient.js'; // Se till att du har rätt importväg
 
 dotenv.config();
@@ -137,14 +138,24 @@ router.post('/api/login', async (req, res) => {
       .from('users')
       .select('*')
       .eq('email', email)
-      .eq('password', password)
       .single();
 
     if (error || !data) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    res.json({ message: 'Login successful', user: data });
+    const isPasswordCorrect = await bcrypt.compare(password, data.password);
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ messsage: 'Invalid password' });
+    }
+
+    const token = jwt.sign(
+      { userId: data.user_id, name: data.name, email: data.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.json({ message: 'Login successful', user: token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
