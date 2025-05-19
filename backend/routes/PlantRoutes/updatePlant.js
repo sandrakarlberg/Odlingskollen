@@ -1,6 +1,6 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import { updatePlant } from '../../handlers/plants/updatePlantHandler.js';
+import express from "express";
+import dotenv from "dotenv";
+import { updatePlant } from "../../handlers/plants/updatePlantHandler.js";
 
 dotenv.config();
 
@@ -50,6 +50,6 @@ const router = express.Router();
  *       404:
  *         description: Växt hittades inte
  */
-router.put('/api/:userId/update-flower/:flowerId', updatePlant);
+router.put("/api/:userId/update-flower/:flowerId", updatePlant);
 
 export default router;

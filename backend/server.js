@@ -1,11 +1,11 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import swaggerDocs from './swagger.js';
-import userRoutes from './routes/userRoutes.js';
-import plantRoutes from './routes/PlantRoutes/index.js';
-import sensorRoutes from './routes/sensors/sensorRoutes.js';
-import errorHandler from './middleware/errorHandler.js';
-import cors from 'cors';
+import express from "express";
+import dotenv from "dotenv";
+import swaggerDocs from "./swagger.js";
+import userRoutes from "./routes/UserRoutes/userRoutes.js";
+import plantRoutes from "./routes/PlantRoutes/plantRoutes.js";
+import sensorRoutes from "./routes/sensors/sensorRoutes.js";
+import errorHandler from "./middleware/errorHandler.js";
+import cors from "cors";
 
 dotenv.config();
 
