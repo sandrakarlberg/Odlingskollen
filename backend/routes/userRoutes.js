@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
 import supabase from '../supabase/supabaseClient.js'; // Se till att du har rätt importväg
 
 dotenv.config();
@@ -79,9 +80,11 @@ router.post('/api/create-users', async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const { data, error } = await supabase
       .from('users')
-      .insert([{ name, email, password }]);
+      .insert([{ name, email, password: hashedPassword }]);
 
     if (error) {
       console.error(error);
