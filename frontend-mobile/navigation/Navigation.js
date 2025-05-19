@@ -12,8 +12,9 @@ import Profile from "../screens/Profile";
 import Settings from "../screens/Settings";
 import Notifications from "../screens/Notifications";
 import Login from "../screens/Login";
-import PlantDetails from "../components/PlantDetails";
+import PlantDetails from "../screens/PlantDetails";
 import AddPlant from "../components/AddPlant";
+import CreateAccount from "../screens/CreateAccount";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -109,7 +110,10 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!username ? (
-          <Stack.Screen name="Login" component={Login} />
+          <>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="CreateAccount" component={CreateAccount} />
+          </>
         ) : (
           <>
             <Stack.Screen name="Main" component={TabNavigator} />
@@ -121,5 +125,4 @@ const Navigation = () => {
     </NavigationContainer>
   );
 };
-
 export default Navigation;

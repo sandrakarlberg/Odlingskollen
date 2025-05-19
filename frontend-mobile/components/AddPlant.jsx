@@ -28,13 +28,13 @@ const AddPlant = () => {
             title="Lägg till"
             variant="accent"
             onPress={handleSubmit}
-          ></BigButton>
+          />
           <BigButton
             title="Avbryt"
             variant="secondary"
             onPress={() => navigation.goBack()}
             style={styles.button}
-          ></BigButton>
+          />
         </View>
       </View>
     </SafeAreaView>

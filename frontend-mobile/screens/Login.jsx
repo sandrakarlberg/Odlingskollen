@@ -11,8 +11,11 @@ import { lightTheme } from "../theme/colors";
 import BigButton from "../components/BigButton";
 import { useUser } from "../context/UserContext";
 import { fetchUsers } from "../services/api";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
+  const navigation = useNavigation();
+
   const { saveUsername } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,8 +29,8 @@ const Login = () => {
     fetchData();
   }, []);
 
-  const onPress = () => {
-    console.log("Du tryckte på knappen för att skapa en ny användare.");
+  const handleNewAccount = () => {
+    navigation.navigate("CreateAccount");
   };
 
   const handleSubmit = () => {
@@ -72,7 +75,7 @@ const Login = () => {
         <BigButton
           title="Skapa ett konto"
           variant="secondary"
-          onPress={onPress}
+          onPress={handleNewAccount}
           styles={styles.createBtn}
         />
       </View>

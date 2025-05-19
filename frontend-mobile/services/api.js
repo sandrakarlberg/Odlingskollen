@@ -27,7 +27,23 @@ export const addPlant = async (name) => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ "flower_name": name }),
+      body: JSON.stringify({ flower_name: name }),
+    });
+    if (!response.ok) throw new Error("Fel vid hämtning av data.");
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+export const addUser = async (name, password, email) => {
+  try {
+    const response = await fetch("http://localhost:3000/api/create-users", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ name: name, password: password, email: email }),
     });
     if (!response.ok) throw new Error("Fel vid hämtning av data.");
     return await response.json();

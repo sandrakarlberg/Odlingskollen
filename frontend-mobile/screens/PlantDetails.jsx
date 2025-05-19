@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { lightTheme } from "../theme/colors";
-import BigButton from "./BigButton";
-import PlantDetailsCards from "./PlantDetailsCards";
+import BigButton from "../components/BigButton";
+import PlantDetailsCards from "../components/PlantDetailsCards";
 import { format, parseISO } from "date-fns";
 import { sv } from "date-fns/locale";
 
