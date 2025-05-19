@@ -146,7 +146,7 @@ router.post('/api/login', async (req, res) => {
 
     const isPasswordCorrect = await bcrypt.compare(password, data.password);
     if (!isPasswordCorrect) {
-      return res.status(401).json({ messsage: 'Invalid password' });
+      return res.status(401).json({ message: 'Invalid password' });
     }
 
     const token = jwt.sign(
