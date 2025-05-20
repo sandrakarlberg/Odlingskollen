@@ -4,13 +4,15 @@ import { lightTheme } from "../theme/colors";
 import { addPlant } from "../services/api";
 import BigButton from "../components/BigButton";
 import { useNavigation } from "@react-navigation/native";
+import { useUser } from "../context/UserContext";
 
 const AddPlant = () => {
   const navigation = useNavigation();
   const [name, setName] = useState("");
+  const { userId } = useUser();
 
   const handleSubmit = async () => {
-    await addPlant(name);
+    await addPlant(name, userId);
   };
 
   return (

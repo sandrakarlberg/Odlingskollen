@@ -4,17 +4,20 @@ import { lightTheme } from "../theme/colors";
 import PlantFilter from "../components/PlantFilter";
 import CategoryCard from "../components/CategoryCard";
 import { fetchPlants } from "../services/api";
+import { useUser } from "../context/UserContext";
 
 const Plants = () => {
   const [userPlants, setUserPlants] = useState([]);
+  const { username, userId } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchPlants();
+      if (!userId) return;
+      const data = await fetchPlants(userId);
       if (data) setUserPlants(data);
     };
     fetchData();
-  }, []);
+  }, [userId]);
 
   return (
     <SafeAreaView style={styles.container}>

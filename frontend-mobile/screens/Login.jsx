@@ -10,38 +10,30 @@ import React, { useState, useEffect } from "react";
 import { lightTheme } from "../theme/colors";
 import BigButton from "../components/BigButton";
 import { useUser } from "../context/UserContext";
-import { fetchUsers } from "../services/api";
+import { apiLogin } from "../services/api";
 import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
   const navigation = useNavigation();
+  const { loadUserFromToken } = useUser();
 
-  const { saveUsername } = useUser();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchUsers();
-      if (data) setUsers(data);
-    };
-    fetchData();
-  }, []);
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("123");
 
   const handleNewAccount = () => {
     navigation.navigate("CreateAccount");
   };
 
-  const handleSubmit = () => {
-    const foundUser = users.find(
-      (user) => user.email === email && user.password === password
-    );
-
-    if (!foundUser) {
-      console.log("Fel inloggningsuppgifter, försök igen.");
-    } else {
-      saveUsername(foundUser.name);
+  const handleSubmit = async () => {
+    try {
+      const response = await apiLogin(email, password);
+      if (response && response.success) {
+        loadUserFromToken();
+      } else {
+        console.log("Fel inloggningsuppgifter, försök igen.");
+      }
+    } catch (error) {
+      console.error("Inloggningen misslyckades: ", error);
     }
   };
 
