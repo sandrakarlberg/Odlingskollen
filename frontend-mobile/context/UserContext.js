@@ -1,31 +1,34 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { jwtDecode } from "jwt-decode";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState("");
+
+  const loadUserFromToken = async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      setUsername(decoded.name);
+      setUserId(decoded.userId);
+    }
+  };
 
   useEffect(() => {
-    const load = async () => {
-      const storedUser = await AsyncStorage.getItem("username");
-      if (storedUser) setUsername(storedUser);
-    };
-    load();
+    loadUserFromToken();
   }, []);
-
-  const saveUsername = async (name) => {
-    setUsername(name);
-    await AsyncStorage.setItem("username", name);
-  };
 
   const clearUser = async () => {
     setUsername("");
-    await AsyncStorage.removeItem("username");
+    setUserId("");
+    await AsyncStorage.removeItem("token");
   };
 
   return (
-    <UserContext.Provider value={{ username, saveUsername, clearUser }}>
+    <UserContext.Provider value={{ username, userId, clearUser, loadUserFromToken }}>
       {children}
     </UserContext.Provider>
   );

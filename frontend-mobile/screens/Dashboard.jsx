@@ -7,7 +7,7 @@ import { lightTheme } from "../theme/colors";
 import { useUser } from "../context/UserContext";
 
 const Dashboard = () => {
-  const {username} = useUser();
+  const { username } = useUser();
 
   return (
     <SafeAreaView style={styles.container}>
