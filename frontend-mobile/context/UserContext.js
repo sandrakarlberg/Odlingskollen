@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SecureStore from "expo-secure-store";
+import { Platform } from "react-native";
 import { jwtDecode } from "jwt-decode";
 
 const UserContext = createContext();
@@ -9,7 +11,10 @@ export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState("");
 
   const loadUserFromToken = async () => {
-    const token = await AsyncStorage.getItem("token");
+    const token =
+      Platform.OS === "web"
+        ? await AsyncStorage.getItem("token")
+        : await SecureStore.getItemAsync("token");
     if (token) {
       const decoded = jwtDecode(token);
       setUsername(decoded.name);
@@ -24,11 +29,17 @@ export const UserProvider = ({ children }) => {
   const clearUser = async () => {
     setUsername("");
     setUserId("");
-    await AsyncStorage.removeItem("token");
+    if (Platform.OS === "web") {
+      await AsyncStorage.removeItem("token");
+    } else {
+      await SecureStore.deleteItemAsync("token");
+    }
   };
 
   return (
-    <UserContext.Provider value={{ username, userId, clearUser, loadUserFromToken }}>
+    <UserContext.Provider
+      value={{ username, userId, clearUser, loadUserFromToken }}
+    >
       {children}
     </UserContext.Provider>
   );
