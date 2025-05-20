@@ -1,0 +1,36 @@
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+
+const InfoCard = ({ title, info }) => {
+  return (
+    <View style={styles.card}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.info}>{info}</Text>
+    </View>
+  );
+};
+
+export default InfoCard;
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 10,
+    padding: 40,
+    width: 310,
+    height: 310,
+    margin: 10,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: "bold",
+  },
+  info: {
+    marginTop: 15,
+    fontSize: 15,
+  },
+});
