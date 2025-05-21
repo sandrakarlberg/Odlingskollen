@@ -7,38 +7,121 @@ export default class Timelines extends Component {
   constructor() {
     super();
     this.data = [
-      { time: "1 Juni", title: "Tomat 1", description: "Event 1 Description", icon: require('../assets/icons8-tomato-48.png')},
+      {
+        time: "1 Juni",
+        title: "Tomat 1",
+        description: "Event 1 Description",
+        icon: (
+          <View style={{
+            backgroundColor: "white",
+            padding: 4,
+            borderRadius: 15,
+          }}>
+            <Image
+              source={require("../assets/icons8-tomato-48.png")}
+              style={{ width: 20, height: 20 }}
+            />
+          </View>
+        ),
+      },
       {
         time: "2 Juni",
         title: "Citron 2",
-        description: "Event 2 Description", icon: require('../assets/icons8-citrus-48.png')
+        description: "Event 2 Description",
+        icon: (
+          <View style={{
+            backgroundColor: "white",
+            padding: 4,
+            borderRadius: 15,
+          }}>
+            <Image
+              source={require("../assets/icons8-citrus-48.png")}
+              style={{ width: 20, height: 20 }}
+            />
+          </View>
+        ),
       },
-      { time: "3 Juni", title: "Tomat 3", description: "Event 3 Description", icon: require('../assets/icons8-tomato-48.png') },
+      {
+        time: "3 Juni",
+        title: "Tomat 3",
+        description: "Event 3 Description",
+        icon: (
+          <View style={{
+            backgroundColor: "white",
+            padding: 4,
+            borderRadius: 15,
+          }}>
+            <Image
+              source={require("../assets/icons8-tomato-48.png")}
+              style={{ width: 20, height: 20 }}
+            />
+          </View>
+        ),
+      },
       {
         time: "4 Juni",
         title: "Citron 4",
-        description: "Event 4 Description", icon: require('../assets/icons8-citrus-48.png')
+        description: "Event 4 Description",
+        icon: (
+          <View style={{
+            backgroundColor: "white",
+            padding: 4,
+            borderRadius: 15,
+          }}>
+            <Image
+              source={require("../assets/icons8-citrus-48.png")}
+              style={{ width: 20, height: 20 }}
+            />
+          </View>
+        ),
       },
-      { time: "5 Juni", title: "Tomat 5", description: "Event 5 Description", icon: require('../assets/icons8-tomato-48.png') },
+      {
+        time: "5 Juni",
+        title: "Tomat 5",
+        description: "Event 5 Description",
+        icon: (
+          <View style={{
+            backgroundColor: "white",
+            padding: 4,
+            borderRadius: 15,
+          }}>
+            <Image
+              source={require("../assets/icons8-tomato-48.png")}
+              style={{ width: 20, height: 20 }}
+            />
+          </View>
+        ),
+      },
     ];
   }
 
   render() {
     return (
       <View style={styles.container}>
-                <Timeline 
+        <Timeline
           style={styles.list}
           data={this.data}
           circleSize={30}
-          circleColor={lightTheme.primary}
-          lineColor={{backgroundColor:lightTheme.neutral}}
-          timeContainerStyle={{minWidth:80, marginTop: 5}}
-          timeStyle={{textAlign: 'center', backgroundColor:lightTheme.primary, color:'white', padding:5, borderRadius:4}}
-          descriptionStyle={{color:'gray'}}
-          options={{
-            style:{paddingTop:5}
+          circleColor={lightTheme.secondary}
+          circleStyle={{
+            border: lightTheme.primary,
+            borderWidth: 2,
+            padding: 5,
           }}
-          innerCircle={'icon'}
+          lineColor={{ backgroundColor: lightTheme.neutral }}
+          timeContainerStyle={{ minWidth: 80, marginTop: 5 }}
+          timeStyle={{
+            textAlign: "center",
+            backgroundColor: lightTheme.primary,
+            color: "white",
+            padding: 5,
+            borderRadius: 4,
+          }}
+          descriptionStyle={{ color: "gray" }}
+          options={{
+            style: { paddingTop: 5 },
+          }}
+          innerCircle={"icon"}
         />
       </View>
     );
@@ -48,9 +131,11 @@ export default class Timelines extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "row",
     padding: 20,
     paddingTop: 65,
     backgroundColor: lightTheme.secondary,
+    marginBottom: 30,
   },
   list: {
     flex: 1,
