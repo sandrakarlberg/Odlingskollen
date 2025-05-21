@@ -17,8 +17,7 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}
-          >
+            }}>
             <Image
               source={require("../assets/icons8-tomato-48.png")}
               style={{ width: 20, height: 20 }}
@@ -36,8 +35,7 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}
-          >
+            }}>
             <Image
               source={require("../assets/icons8-citrus-48.png")}
               style={{ width: 20, height: 20 }}
@@ -55,8 +53,7 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}
-          >
+            }}>
             <Image
               source={require("../assets/icons8-tomato-48.png")}
               style={{ width: 20, height: 20 }}
@@ -74,8 +71,7 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}
-          >
+            }}>
             <Image
               source={require("../assets/icons8-citrus-48.png")}
               style={{ width: 20, height: 20 }}
@@ -93,8 +89,7 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}
-          >
+            }}>
             <Image
               source={require("../assets/icons8-tomato-48.png")}
               style={{ width: 20, height: 20 }}
@@ -107,9 +102,10 @@ export default class Timelines extends Component {
 
   render() {
     return (
-      <View style={{backgroundColor: "#FFFFFF"}}>
+      <View style={{ backgroundColor: "#FFFFFF" }}>
         <View style={styles.container}>
           <Timeline
+            scrollEnabled={false}
             style={styles.list}
             data={this.data}
             circleSize={30}
