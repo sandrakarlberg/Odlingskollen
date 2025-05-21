@@ -10,14 +10,6 @@ import Timeline from "../components/Timelines";
 const Dashboard = () => {
   const { username } = useUser();
 
-  const plants = [
-    { step: 6, title: 'Not Started Yet', color: '#A0A0A0' },
-    { step: 5, title: '4 tasks completed', subtitle: 'In Progress', color: '#D97E33' },
-    { step: 4, title: '3 tasks completed', subtitle: 'Completed on 04/23/2024', color: '#3FA46A' },
-    { step: 3, title: '4 tasks completed', subtitle: 'Completed on 04/23/2024', color: '#3FA46A' },
-  ];
-  
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
