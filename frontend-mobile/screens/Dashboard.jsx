@@ -19,7 +19,7 @@ const Dashboard = () => {
       />
       <InfoCardSection />
       <SensorStatus />
-      <Timeline steps={plants} />
+      <Timeline />
       </ScrollView>
     </SafeAreaView>
   );
