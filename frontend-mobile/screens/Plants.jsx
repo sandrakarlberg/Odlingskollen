@@ -17,7 +17,7 @@ const Plants = () => {
       if (data) setUserPlants(data);
     };
     fetchData();
-  }, [userId]);
+  }, [userId, userPlants]);
 
   return (
     <SafeAreaView style={styles.container}>
