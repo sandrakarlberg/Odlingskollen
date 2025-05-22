@@ -17,7 +17,8 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}>
+            }}
+          >
             <Image
               source={require("../assets/icons8-tomato-48.png")}
               style={{ width: 20, height: 20 }}
@@ -35,7 +36,8 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}>
+            }}
+          >
             <Image
               source={require("../assets/icons8-citrus-48.png")}
               style={{ width: 20, height: 20 }}
@@ -53,7 +55,8 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}>
+            }}
+          >
             <Image
               source={require("../assets/icons8-tomato-48.png")}
               style={{ width: 20, height: 20 }}
@@ -71,7 +74,8 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}>
+            }}
+          >
             <Image
               source={require("../assets/icons8-citrus-48.png")}
               style={{ width: 20, height: 20 }}
@@ -89,7 +93,8 @@ export default class Timelines extends Component {
               backgroundColor: "white",
               padding: 4,
               borderRadius: 15,
-            }}>
+            }}
+          >
             <Image
               source={require("../assets/icons8-tomato-48.png")}
               style={{ width: 20, height: 20 }}
@@ -116,7 +121,10 @@ export default class Timelines extends Component {
               padding: 5,
             }}
             lineColor={{ backgroundColor: lightTheme.neutral }}
-            timeContainerStyle={{ minWidth: 80, marginTop: 5 }}
+            timeContainerStyle={{
+              minWidth: 80,
+              marginTop: 2,
+            }}
             timeStyle={{
               textAlign: "center",
               backgroundColor: lightTheme.primary,
@@ -139,15 +147,12 @@ export default class Timelines extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
     padding: 20,
     backgroundColor: lightTheme.secondary,
-    marginBottom: 50,
-    margin: "auto",
+    alignItems: "center",
+    marginBottom: 60,
   },
   list: {
-    flex: 1,
-    marginTop: 20,
-    color: lightTheme.primary,
+    width: 250,
   },
 });

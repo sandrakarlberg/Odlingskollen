@@ -1,11 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 
-const InfoCard = ({ title, info }) => {
+const InfoCard = ({ title, info, image }) => {
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.info}>{info}</Text>
+      <View style={styles.content}>
+        <Image source={image} style={styles.icon} />
+        <Text style={styles.info}>{info}</Text>
+      </View>
     </View>
   );
 };
@@ -28,9 +31,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: "bold",
+    marginBottom: 25,
+  },
+  content: {
+    flexDirection: "row",
   },
   info: {
-    marginTop: 15,
-    fontSize: 15,
+    fontSize: 18,
+    marginLeft: 15,
+    width: 150,
+    alignSelf: "flex-start",
+    paddingTop: 5,
+  },
+  icon: {
+    width: 60,
+    height: 60,
   },
 });
