@@ -1,14 +1,14 @@
-import supabase from "../../supabaseClient.js";
+import supabase from '../../supabase/supabaseClient.js';
 
-export const getAllUsers = async (req, res) => {
+export const getAllUsersHandler = async (req, res) => {
   try {
-    const { data, error } = await supabase.from("users").select("*");
+    const { data, error } = await supabase.from('users').select('*');
 
     if (error) {
       console.error(error);
       return res
         .status(500)
-        .json({ error: "Something went wrong with the database request" });
+        .json({ error: 'Something went wrong with the database request' });
     }
 
     res.json(data);
@@ -16,6 +16,6 @@ export const getAllUsers = async (req, res) => {
     console.error(error);
     res
       .status(500)
-      .json({ error: "Something went wrong with the database request" });
+      .json({ error: 'Something went wrong with the database request' });
   }
 };
