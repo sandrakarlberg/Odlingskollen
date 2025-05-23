@@ -5,10 +5,25 @@ import BigButton from "../components/BigButton";
 import PlantDetailsCards from "../components/PlantDetailsCards";
 import { format, parseISO } from "date-fns";
 import { sv } from "date-fns/locale";
+import { useUser } from "../context/UserContext";
+import { removePlant } from "../services/api";
 
 const PlantDetails = ({ route }) => {
   const navigation = useNavigation();
   const { otherParams } = route.params;
+  const { userId } = useUser();
+  const plantId = otherParams.id;
+
+  console.log(otherParams);
+
+  const deletePlant = async () => {
+    await removePlant(userId, plantId);
+    navigation.goBack();
+  };
+
+  const updatePlant = () => {
+    console.log("Uppdatera");
+  };
 
   const values = [
     { title: "Senast vattnad", value: otherParams.lastWatered },
@@ -77,7 +92,7 @@ const PlantDetails = ({ route }) => {
       <ScrollView style={styles.card}>
         <BigButton
           title="Gå tillbaka"
-          variant="secondary"
+          variant="primary"
           onPress={() => navigation.goBack()}
         />
         <View style={styles.header}>
@@ -91,6 +106,13 @@ const PlantDetails = ({ route }) => {
             {otherParams.status}
           </Text>
         </View>
+        <BigButton title="Byt namn" variant="accent" onPress={updatePlant} />
+        <BigButton
+          title="Ta bort"
+          variant="secondary"
+          onPress={deletePlant}
+          style={styles.deleteButton}
+        />
         <View style={styles.valueSection}>
           {values.map((item, index) => (
             <PlantDetailsCards
@@ -130,7 +152,7 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 15,
     textAlign: "center",
-    marginTop: 10,
+    marginTop: 15,
     width: 100,
     borderRadius: 10,
     padding: 10,
@@ -139,12 +161,16 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#FFFFFF",
     marginVertical: 20,
-    padding: 20,
+    padding: 30,
     borderRadius: 10,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 6,
+  },
+  deleteButton: {
+    marginBottom: 20,
+    marginTop: 10,
   },
   valueSection: {
     flexDirection: "row",
