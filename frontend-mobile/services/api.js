@@ -17,7 +17,7 @@ export const fetchUsers = async () => {
 
 export const apiLogin = async (email, password) => {
   try {
-    const response = await fetch(`${baseUrl}/api/login`, {
+    const response = await fetch(`${baseUrl}/api/user-login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +87,7 @@ export const addPlant = async (name, id) => {
 
 export const addUser = async (name, password, email) => {
   try {
-    const response = await fetch(`${baseUrl}/api/create-users`, {
+    const response = await fetch(`${baseUrl}/api/create-user`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
