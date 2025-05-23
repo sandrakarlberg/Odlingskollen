@@ -178,10 +178,28 @@
                         "type": "string",
                         "format": "date-time"
                       },
+                      "watering_interval": {
+                        "type": "number"
+                      },
                       "moisture": {
                         "type": "number"
                       },
+                      "flower_temp": {
+                        "type": "number"
+                      },
+                      "dirt_temp": {
+                        "type": "number"
+                      },
                       "sunlight": {
+                        "type": "number"
+                      },
+                      "nitrogen_level": {
+                        "type": "number"
+                      },
+                      "phosphor": {
+                        "type": "number"
+                      },
+                      "potassium": {
                         "type": "number"
                       },
                       "users": {

@@ -11,8 +11,14 @@ export const getPlants = async (req, res, next) => {
         flower_id,
         flower_name,
         last_watered,
+        watering_interval,
         moisture,
+        flower_temp,
+        dirt_temp,
         sunlight,
+        nitrogen_level,
+        phosphor,
+        potassium,
         users:user_id (
           user_id,
           name
