@@ -1,6 +1,6 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import { getPlants } from '../../handlers/plants/getPlantsHandler.js';
+import express from "express";
+import dotenv from "dotenv";
+import { getPlants } from "../../handlers/plants/getPlantsHandler.js";
 
 dotenv.config();
 
@@ -50,6 +50,6 @@ const router = express.Router();
  *       404:
  *         description: Inga växter hittades
  */
-router.get('/api/:userId/get-flowers', getPlants);
+router.get("/api/:userId/get-flowers", getPlants);
 
 export default router;
