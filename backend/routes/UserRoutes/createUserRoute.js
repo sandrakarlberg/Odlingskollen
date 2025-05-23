@@ -1,6 +1,6 @@
-import express from "express";
-import dotenv from "dotenv";
-import { createUserHandler } from "../../handlers/users/createUserHandler.js";
+import express from 'express';
+import dotenv from 'dotenv';
+import { createUserHandler } from '../../handlers/users/createUserHandler.js';
 
 dotenv.config();
 
@@ -24,14 +24,45 @@ const router = express.Router();
  *             properties:
  *               name:
  *                 type: string
+ *                 example: Anna Andersson
  *               email:
  *                 type: string
+ *                 example: anna@example.com
  *               password:
  *                 type: string
+ *                 example: starktlösenord
  *     responses:
  *       200:
  *         description: Användare skapad
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Added name: Anna Andersson and email/password to the database
+ *       400:
+ *         description: Saknade fält
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: All fields are required
+ *       500:
+ *         description: Databasfel
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Something went wrong with the database request
  */
-router.post("/api/create-users", createUserHandler);
+router.post('/api/create-users', createUserHandler);
 
 export default router;

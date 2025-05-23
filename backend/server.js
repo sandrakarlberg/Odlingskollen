@@ -18,8 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 app.use(userRoutes);
-app.use(sensorRoutes); // denna ordning fixade en bug smh
+app.use(sensorRoutes);
 app.use(plantRoutes);
+
+swaggerDocs(app);
 
 app.use(errorHandler);
 
