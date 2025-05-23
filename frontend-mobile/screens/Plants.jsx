@@ -38,8 +38,14 @@ const Plants = () => {
               id: item.flower_id,
               name: item.flower_name,
               lastWatered: item.last_watered,
+              wateringInterval: item.watering_interval,
               moisture: item.moisture,
               sunlight: item.sunlight,
+              flowerTemp: item.flower_temp,
+              dirtTemp: item.dirt_temp,
+              nitrogen: item.nitrogen_level,
+              phosphor: item.phosphor,
+              potassium: item.potassium,
               status: "Healthy",
             }))}
           />

@@ -18,12 +18,40 @@ const PlantDetails = ({ route }) => {
         ? `${otherParams.moisture}%`
         : "Ej tillgänglig",
     },
-    { title: "Solljus", value: "80%" },
-    { title: "Växtens temperatur", value: "18°C" },
-    { title: "Jordens temperatur", value: "15°C" },
-    { title: "Kvävenivå", value: "50 mg/kg" },
-    { title: "Fosfornivå", value: "115 mg/kg" },
-    { title: "Kaliumnivå", value: "123 mg/kg" },
+    {
+      title: "Solljus",
+      value: otherParams.sunlight === "full" ? "Bra mängd" : "Ej tillgänglig",
+    },
+    {
+      title: "Växtens temperatur",
+      value: otherParams.flowerTemp
+        ? `${otherParams.flowerTemp}°C`
+        : "Ej tillgänglig",
+    },
+    {
+      title: "Jordens temperatur",
+      value: otherParams.dirtTemp
+        ? `${otherParams.dirtTemp}°C`
+        : "Ej tillgänglig",
+    },
+    {
+      title: "Kvävenivå",
+      value: otherParams.nitrogen
+        ? `${otherParams.nitrogen} mg/kg`
+        : "Ej tillgänglig",
+    },
+    {
+      title: "Fosfornivå",
+      value: otherParams.phosphor
+        ? `${otherParams.phosphor} mg/kg`
+        : "Ej tillgänglig",
+    },
+    {
+      title: "Kaliumnivå",
+      value: otherParams.potassium
+        ? `${otherParams.potassium} mg/kg`
+        : "Ej tillgänglig",
+    },
   ];
 
   const statusBackground =

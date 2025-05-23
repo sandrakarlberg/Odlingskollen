@@ -11,6 +11,11 @@ export default function PlantItem({
   lastWatered,
   moisture,
   sunlight,
+  flowerTemp,
+  dirtTemp,
+  nitrogen,
+  phosphor,
+  potassium,
 }) {
   const navigation = useNavigation();
 
@@ -35,6 +40,11 @@ export default function PlantItem({
         lastWatered: lastWatered,
         moisture: moisture,
         sunlight: sunlight,
+        flowerTemp: flowerTemp,
+        dirtTemp: dirtTemp,
+        nitrogen: nitrogen,
+        phosphor: phosphor,
+        potassium: potassium,
       },
     });
   };
