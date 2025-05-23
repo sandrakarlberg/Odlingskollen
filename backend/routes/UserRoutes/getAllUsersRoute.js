@@ -11,6 +11,8 @@ const router = express.Router();
  * /api/get-users:
  *   get:
  *     summary: Hämta alla användare
+ *     tags:
+ *       - Users
  *     responses:
  *       200:
  *         description: Lyckad hämtning av användare

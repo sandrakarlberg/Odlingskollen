@@ -11,6 +11,8 @@ const router = express.Router();
  * /api/user-login:
  *   post:
  *     summary: Logga in användare
+ *     tags:
+ *       - Users
  *     requestBody:
  *       required: true
  *       content:

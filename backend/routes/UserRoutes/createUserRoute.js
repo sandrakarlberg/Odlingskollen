@@ -8,9 +8,11 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/create-users:
+ * /api/create-user:
  *   post:
  *     summary: Skapa en ny användare
+ *     tags:
+ *       - Users
  *     requestBody:
  *       required: true
  *       content:
@@ -63,6 +65,6 @@ const router = express.Router();
  *                   type: string
  *                   example: Something went wrong with the database request
  */
-router.post('/api/create-users', createUserHandler);
+router.post('/api/create-user', createUserHandler);
 
 export default router;

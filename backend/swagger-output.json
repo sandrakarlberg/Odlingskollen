@@ -406,6 +406,9 @@
     "/api/get-users": {
       "get": {
         "summary": "Hämta alla användare",
+        "tags": [
+          "Users"
+        ],
         "responses": {
           "200": {
             "description": "Lyckad hämtning av användare",
@@ -456,6 +459,9 @@
     "/api/user-login": {
       "post": {
         "summary": "Logga in användare",
+        "tags": [
+          "Users"
+        ],
         "requestBody": {
           "required": true,
           "content": {
