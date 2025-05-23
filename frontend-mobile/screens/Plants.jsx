@@ -1,4 +1,10 @@
-import { StyleSheet, SafeAreaView, ScrollView, View } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  View,
+  Platform,
+} from "react-native";
 import { useEffect, useState } from "react";
 import { lightTheme } from "../theme/colors";
 import PlantFilter from "../components/PlantFilter";
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: lightTheme.primary,
-    marginBottom: 45, //la till margin för annars hamnade knappen under navbar
+    marginBottom: Platform.OS === "ios" ? 80 : 45,
   },
   content: {},
   PlantFilter: {
