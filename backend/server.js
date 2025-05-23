@@ -16,12 +16,11 @@ app.use(cors());
 
 // Middleware
 app.use(express.json());
+swaggerDocs(app);
 
 app.use(userRoutes);
 app.use(sensorRoutes);
 app.use(plantRoutes);
-
-swaggerDocs(app);
 
 app.use(errorHandler);
 
