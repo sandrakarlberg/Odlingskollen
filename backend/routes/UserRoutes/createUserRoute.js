@@ -43,7 +43,7 @@ const router = express.Router();
  *               properties:
  *                 message:
  *                   type: string
- *                   example: Added name: Anna Andersson and email/password to the database
+ *                   example: Added name - Anna Andersson and email/password to the database
  *       400:
  *         description: Saknade fält
  *         content:
