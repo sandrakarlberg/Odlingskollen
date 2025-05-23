@@ -4,13 +4,15 @@ import { lightTheme } from "../theme/colors";
 
 const SensorStatus = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.flexContainer}>
-        <Text style={styles.status}>Alla sensorer är i drift</Text>
-        <Image
-          source={require("../assets/icons8-sensor-48.png")}
-          style={styles.image}
-        />
+    <View style={styles.wrapper}>
+      <View style={styles.container}>
+        <View style={styles.flexContainer}>
+          <Text style={styles.status}>Alla sensorer är i drift</Text>
+          <Image
+            source={require("../assets/icons8-sensor-48.png")}
+            style={styles.image}
+          />
+        </View>
       </View>
     </View>
   );
@@ -19,6 +21,10 @@ const SensorStatus = () => {
 export default SensorStatus;
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: "#FFFFFF",
+    paddingBottom: 25,
+  },
   container: {
     backgroundColor: lightTheme.neutral,
     padding: 30,

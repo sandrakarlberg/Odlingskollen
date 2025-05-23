@@ -13,6 +13,7 @@ const AddPlant = () => {
 
   const handleSubmit = async () => {
     await addPlant(name, userId);
+    navigation.goBack();
   };
 
   return (
