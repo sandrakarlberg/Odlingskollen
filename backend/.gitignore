@@ -36,3 +36,6 @@ coverage/
 
 # Express session files (if using file-based session store)
 sessions/
+
+
+swagger-output.json
