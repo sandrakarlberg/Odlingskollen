@@ -26,8 +26,16 @@ const Plants = () => {
   }, [userId, userPlants]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.content}>
+    <SafeAreaView
+      style={styles.container}
+      accessible={true}
+      accessibilityLabel="Växtöversiktsskärm"
+    >
+      <ScrollView
+        contentContainerStyle={styles.content}
+        accessible={true}
+        accessibilityLabel="Lista över växthus och växter"
+      >
         <View style={styles.PlantFilter}>
           <PlantFilter />
         </View>

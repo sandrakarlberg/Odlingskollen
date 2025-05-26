@@ -14,8 +14,6 @@ const PlantDetails = ({ route }) => {
   const { userId } = useUser();
   const plantId = otherParams.id;
 
-  console.log(otherParams);
-
   const deletePlant = async () => {
     await removePlant(userId, plantId);
     navigation.goBack();
@@ -88,32 +86,57 @@ const PlantDetails = ({ route }) => {
       : "grey";
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.card}>
+    <SafeAreaView
+      style={styles.container}
+      accessible={true}
+      accessibilityLabel={`Detaljer för växten ${otherParams.name}`}
+    >
+      <ScrollView
+        style={styles.card}
+        accessible={true}
+        accessibilityLabel="Information om växtens status, miljö och näringsämnen"
+      >
         <BigButton
           title="Gå tillbaka"
           variant="primary"
           onPress={() => navigation.goBack()}
+          accessibilityLabel="Gå tillbaka till föregående sida"
         />
-        <View style={styles.header}>
+        <View
+          style={styles.header}
+          accessible={true}
+          accessibilityLabel={`Växtnamn: ${otherParams.name}. Status: ${otherParams.status}`}
+        >
           <Text style={styles.title}>{otherParams.name}</Text>
           <Text
             style={[
               styles.status,
               { backgroundColor: statusBackground, color: statusText },
             ]}
+            accessibilityRole="text"
+            accessibilityLabel={`Status: ${otherParams.status}`}
           >
             {otherParams.status}
           </Text>
         </View>
-        <BigButton title="Byt namn" variant="accent" onPress={updatePlant} />
+        <BigButton
+          title="Byt namn"
+          variant="accent"
+          onPress={updatePlant}
+          accessibilityLabel="Byt namn på växten"
+        />
         <BigButton
           title="Ta bort"
           variant="secondary"
           onPress={deletePlant}
           style={styles.deleteButton}
+          accessibilityLabel="Ta bort växten från listan"
         />
-        <View style={styles.valueSection}>
+        <View
+          style={styles.valueSection}
+          accessible={true}
+          accessibilityLabel="Mätvärden för växtens miljö och tillstånd"
+        >
           {values.map((item, index) => (
             <PlantDetailsCards
               key={index}
@@ -125,6 +148,7 @@ const PlantDetails = ({ route }) => {
                     })
                   : item.value
               }
+              accessibilityLabel={`${item.title}: ${item.value}`}
             />
           ))}
         </View>
