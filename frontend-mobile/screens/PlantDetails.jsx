@@ -33,19 +33,11 @@ const PlantDetails = ({ route }) => {
     },
     {
       title: "Solljus",
-      value: otherParams.sunlight === "full" ? "Bra mängd" : "Ej tillgänglig",
+      value: otherParams.light ? `${otherParams.light}%` : "Ej tillgänglig",
     },
     {
-      title: "Växtens temperatur",
-      value: otherParams.flowerTemp
-        ? `${otherParams.flowerTemp}°C`
-        : "Ej tillgänglig",
-    },
-    {
-      title: "Jordens temperatur",
-      value: otherParams.dirtTemp
-        ? `${otherParams.dirtTemp}°C`
-        : "Ej tillgänglig",
+      title: "Temperatur",
+      value: otherParams.temp ? `${otherParams.temp}°C` : "Ej tillgänglig",
     },
     {
       title: "Kvävenivå",
