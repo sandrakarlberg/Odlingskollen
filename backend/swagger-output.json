@@ -51,22 +51,10 @@
                   "moisture": {
                     "type": "number"
                   },
-                  "flower_temp": {
+                  "temp": {
                     "type": "number"
                   },
-                  "dirt_temp": {
-                    "type": "number"
-                  },
-                  "sunlight": {
-                    "type": "number"
-                  },
-                  "nitrogen_level": {
-                    "type": "number"
-                  },
-                  "phosphor": {
-                    "type": "number"
-                  },
-                  "potassium": {
+                  "light": {
                     "type": "number"
                   }
                 }
@@ -184,22 +172,10 @@
                       "moisture": {
                         "type": "number"
                       },
-                      "flower_temp": {
+                      "temp": {
                         "type": "number"
                       },
-                      "dirt_temp": {
-                        "type": "number"
-                      },
-                      "sunlight": {
-                        "type": "number"
-                      },
-                      "nitrogen_level": {
-                        "type": "number"
-                      },
-                      "phosphor": {
-                        "type": "number"
-                      },
-                      "potassium": {
+                      "light": {
                         "type": "number"
                       },
                       "users": {
@@ -316,33 +292,21 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "last_watered": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
                   "moisture": {
                     "type": "number",
-                    "example": 45.2
+                    "example": 45
                   },
-                  "flower_temp": {
-                    "type": "number",
-                    "example": 22.5
-                  },
-                  "dirt_temp": {
+                  "temp": {
                     "type": "number",
                     "example": 18.3
                   },
-                  "sunlight": {
+                  "light": {
                     "type": "number",
-                    "example": 300
-                  },
-                  "nitrogen_level": {
-                    "type": "number",
-                    "example": 12.1
-                  },
-                  "phosphor": {
-                    "type": "number",
-                    "example": 5.4
-                  },
-                  "potassium": {
-                    "type": "number",
-                    "example": 8.7
+                    "example": 50
                   }
                 }
               }

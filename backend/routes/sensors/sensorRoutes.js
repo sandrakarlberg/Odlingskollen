@@ -1,6 +1,6 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import { updateSensorData } from '../../handlers/sensors/updateSensorDataHandler.js';
+import express from "express";
+import dotenv from "dotenv";
+import { updateSensorData } from "../../handlers/sensors/updateSensorDataHandler.js";
 
 dotenv.config();
 
@@ -27,27 +27,18 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             properties:
+ *               last_watered:
+ *                 type: string
+ *                 format: date-time
  *               moisture:
  *                 type: number
- *                 example: 45.2
- *               flower_temp:
- *                 type: number
- *                 example: 22.5
- *               dirt_temp:
+ *                 example: 45
+ *               temp:
  *                 type: number
  *                 example: 18.3
- *               sunlight:
+ *               light:
  *                 type: number
- *                 example: 300
- *               nitrogen_level:
- *                 type: number
- *                 example: 12.1
- *               phosphor:
- *                 type: number
- *                 example: 5.4
- *               potassium:
- *                 type: number
- *                 example: 8.7
+ *                 example: 50
  *     responses:
  *       200:
  *         description: Sensor data uppdaterad
@@ -93,6 +84,6 @@ const router = express.Router();
  *                   type: string
  *                   example: Additional error details
  */
-router.put('/api/sensor/update/:flowerId', updateSensorData);
+router.put("/api/sensor/update/:flowerId", updateSensorData);
 
 export default router;

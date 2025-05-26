@@ -1,6 +1,6 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import { addPlant } from '../../handlers/plants/addPlantHandler.js';
+import express from "express";
+import dotenv from "dotenv";
+import { addPlant } from "../../handlers/plants/addPlantHandler.js";
 
 dotenv.config();
 
@@ -38,17 +38,9 @@ const router = express.Router();
  *                 type: number
  *               moisture:
  *                 type: number
- *               flower_temp:
+ *               temp:
  *                 type: number
- *               dirt_temp:
- *                 type: number
- *               sunlight:
- *                 type: number
- *               nitrogen_level:
- *                 type: number
- *               phosphor:
- *                 type: number
- *               potassium:
+ *               light:
  *                 type: number
  *     responses:
  *       200:
@@ -63,6 +55,6 @@ const router = express.Router();
  *       400:
  *         description: Ogiltig begäran – växtnamn
  */
-router.post('/api/:userId/add-flower', addPlant);
+router.post("/api/:userId/add-flower", addPlant);
 
 export default router;
