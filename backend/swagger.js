@@ -26,9 +26,11 @@ export default (app) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 };
 
-// Uppdates swagger-spec.json
-fs.writeFileSync(
-  './swagger-output.json',
-  JSON.stringify(swaggerSpec, null, 2),
-  'utf8'
-);
+// Skriv bara ut Swagger-specfil i utvecklingsmiljö
+if (process.env.NODE_ENV !== 'production') {
+  fs.writeFileSync(
+    './swagger-output.json',
+    JSON.stringify(swaggerSpec, null, 2),
+    'utf8'
+  );
+}
