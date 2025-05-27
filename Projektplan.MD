@@ -2,32 +2,32 @@
 
 ## Introduktion och bakgrund
 - **Kortfattad beskrivning av projektets syfte och mål**
-- Projektets mål är att utveckla ett IoT-baserat sensorsystem som hjälper bönder och storskaliga växtodlare att optimera vården av sina grödor genom att mäta fuktighet, vattenmängd, solljus och näringsnivåer i jorden. 
+- Projektets mål är att utveckla ett IoT-baserat sensorsystem som hjälper bönder och storskaliga växtodlare att optimera vården av sina grödor genom att mäta fuktighet, vattenmängd, solljus och temperatur i jorden. 
 Systemet kommunicerar med en databas som analyserar sensordata och ger rekommendationer till användaren via en mobil- och webbapplikation.
 
 - **Beskrivning av problemet som lösningen ska adressera**
 - Effektiv växtodling kräver noggrann bevattning och näringshantering, men många bönder saknar tillgång till detaljerad realtidsdata om markförhållandena. 
-Manuell övervakning är tidskrävande och kan leda till ineffektiv resursanvändning, vilket påverkar skördens kvalitet och avkastning. Genom att automatisera insamling och analys av fukt-, ljus- och näringsnivåer kan detta system ge bönder insikter för att optimera vattenförbrukning och gödsling, minska onödigt svinn och förbättra skördeutfallet.
+Manuell övervakning är tidskrävande och kan leda till ineffektiv resursanvändning, vilket påverkar skördens kvalitet och avkastning. Genom att automatisera insamling och analys av fukt-, ljus- och temperaturmätningar kan detta system ge bönder insikter för att optimera vattenförbrukning och gödsling, minska onödigt svinn och förbättra skördeutfallet.
 
 - **Eventuella intressenter och målgrupp för produkten**
 - Primära användare: Bönder och storskaliga växtodlare inom jordbruk, växthusodling och kommersiell växtproduktion.
-- Sekundära intressenter: Jordbruksorganisationer, rådgivare inom agronomi, lantbruksföretag och leverantörer av bevattningssystem.
+- Sekundära intressenter: Jordbruksorganisationer, rådgivare inom agronomi, lantbruksföretag, leverantörer av bevattningssystem och kontorsmiljöer.
 - Projektteamet: Utvecklare inom frontend, backend och IoT.
 Utbildare och mentorer: Ansvariga för att godkänna projektets genomförande.
 
 
 ## Val av teknologi och arkitektur
 - **Val av teknologier för frontend, backend och IoT**
-- Frontend: React Native, Visual Studio Code, Tailwind, CSS, JavaScript
+- Frontend: React Native, Visual Studio Code, CSS, JavaScript
 
-- Backend: Node.js, Express.js, JavaScript, Visual Studio Code
+- Backend: Node.js, Express.js, JavaScript, Visual Studio Code, PostgreSQL
 
-- IoT: C++, Arduino mikrokontroller, Arduino IDE, Visual studio Code
+- IoT: C++, Arduino mikrokontroller, PlatformIO, Visual studio Code
 
 - **Översikt över systemarkitekturen**
 
 - **Beslut kring databas- och API-struktur**
- - SQL (MongoDB, om det går)
+ - Supabase (PostgreSQL)
 
 ## Teamstruktur och ansvarsområden
 - **Gruppens sammansättning – vilka ingår i varje team?**
@@ -36,7 +36,7 @@ Utbildare och mentorer: Ansvariga för att godkänna projektets genomförande.
 
 - Backend: Jonatan Jarl, Filip Wretner, Andreas, David, Gaston
 
-- IoT: Jonathan Rubin, Dennis Holm, Seref Özbodur, Erik Eriksson, Jessica Sjösten
+- IoT: Jonathan Rubin, Dennis Holm, Jessica Sjösten, Seref Özbodur, Erik Eriksson 
 
 - **Beskrivning av huvudansvar och arbetsuppgifter för varje team**
 
@@ -49,12 +49,11 @@ Utbildare och mentorer: Ansvariga för att godkänna projektets genomförande.
 - **Hur teamen ska arbeta tillsammans och säkerställa kunskapsöverföring**
 
 ## Arbetsmetoder och verktyg
-- **Val av agil metodik (Scrum, Kanban eller liknande)**
+- **Val av agil metodik (Scrum)**
 
 - **Vilka verktyg som ska användas för:**
 - Kodhantering: All kodhantering kommer ske med hjälp av git och github
 - Kommunikationskälla: Alla kommunikation sker via Discord 
-- Sprintplanering och uppgiftshantering: Jira, kanban
 - Hur teamet hanterar standups, sprintplanering, retros och demos: Standup varje tisdag 09:00, två veckors sprintar start och slut på tisdagar. Sen också review, retrospective och planning på tisdagar.
   - Plan för code reviews och pull requests: Ingen mergar till main/develop branch utan review som sker via pull request. Varje team är huvudansvarig för att hantera sina egna pull requests. Man får inte godkänna sin egen pull request.
 
@@ -87,19 +86,13 @@ Utbildare och mentorer: Ansvariga för att godkänna projektets genomförande.
 
 ## Leveranser och dokumentation
 - **Slutproduktens minimikrav (vad MÅSTE vara klart vid projektavslut?).**
-- En produkt som mäter fukt i marken, solljus, temperatur, näring (om budget räcker), samt lagrar data och visar data för slutanvändaren. Och styra via en mobilapp.
+- En produkt som mäter fukt i marken, solljus, temperatur och nederbörd, samt lagrar data och visar data för slutanvändaren, via en mobilapp.
 
 - **Vad varje team (frontend, backend, IoT) måste leverera**
 Alla team måste leverera en fungerande och testad produkt, i enlighet med respektive teams ansvarsområde
 - **Vilken dokumentation som ska finnas och vem som ansvarar för den**
 - Alla ansvarar för dokumentation som rör dem.
-- Readme.md, srs, kanban, API-dokumentation endpoints, kopplingsschema för hårdvaran, resultaten för användartester för Figma, doxy/JSDoc, projektplan
+- Readme.md, API-dokumentation endpoints, kopplingsschema för hårdvaran, resultaten för användartester för Figma, doxy/JSDoc, projektplan
 
 - **Plan för att hålla README och API-dokumentation uppdaterad**
 - Tas upp varje sprint-plan
-
-## Slutlig checklista för projektplanen
-- **Dokumenteras som PROJEKTPLAN.md i Git-repot**
-- **Ska innehålla alla ovanstående punkter innan inlämning vecka 12**
-- **Projektplanen skickas till respektive utbildare senast den 21/3 klockan 15.00**
-- **Godkännas av utbildare innan utvecklingsarbetet startar**
