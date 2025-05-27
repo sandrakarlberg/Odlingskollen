@@ -1,7 +1,3 @@
-# App-Arts-Chas-Challenge
-
-# Backend
-
 1. Se till att du är i rätt mapp genom att köra `cd backend`.
 2. Kör `npm install` för att installera alla nödvändiga beroenden.
 3. Starta utvecklingsservern med kommandot `npm run dev`.
