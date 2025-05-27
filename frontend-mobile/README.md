@@ -56,10 +56,11 @@ Detta startar Expo, och du kan sedan testa appen i en webbläsare, en emulator e
 
 - Logga in och registrera användare
 - Utforska och visa växter
-- Visa detaljerad växtinformation
 - Lägg till och ta bort växter
+- Visa detaljerad växtinformation
+- Få indikationer på växternas status
 
 ## Team
 
-- Sandra Karlberg: Logik och kontext, Dashboard, Plant Details, layout
+- Sandra Karlberg: API-anrop, kontext, Dashboard, Plant Details, layout
 - Amanda Lindström: Inloggningssidan, Plants-sidan, Tidslinje, layout
