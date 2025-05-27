@@ -13,11 +13,11 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000', // Replace with prod URL if needed
+        url: 'http://localhost:3000',
       },
     ],
   },
-  apis: ['./routes/**/*.js'], // Update path if needed
+  apis: ['./routes/**/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
@@ -26,11 +26,9 @@ export default (app) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 };
 
-// ✅ Write only in development (avoid breaking on Vercel)
-if (process.env.NODE_ENV !== 'production') {
-  fs.writeFileSync(
-    './swagger-output.json',
-    JSON.stringify(swaggerSpec, null, 2),
-    'utf8'
-  );
-}
+// Uppdates swagger-spec.json
+fs.writeFileSync(
+  './swagger-output.json',
+  JSON.stringify(swaggerSpec, null, 2),
+  'utf8'
+);
