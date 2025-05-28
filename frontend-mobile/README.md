@@ -50,7 +50,7 @@ npm install
 npx expo start
 ```
 
-Detta startar Expo, och du kan sedan testa appen i en webbläsare, en emulator eller en fysisk enhet via Expo Go. För att testa på en fysisk enhet laddar du ner appen Expo Go och skannar QR-koden.
+Detta startar Expo, och du kan sedan testa appen i en webbläsare, en simulator/emulator eller en fysisk enhet via Expo Go. För att testa på en fysisk enhet laddar du ner appen Expo Go och skannar QR-koden.
 
 ## Funktioner
 
