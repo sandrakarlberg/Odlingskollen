@@ -9,6 +9,6 @@
 
 ## Frontend
 
-1. Se till att du är i rätt mapp, kör `cd backend`.
+1. Se till att du är i rätt mapp, kör `cd frontend-mobile`.
 2. Kör `npm install` för att installera alla nödvändiga beroenden.
 3. Starta utvecklingsservern med kommandot `npx expo start`. Detta startar Expo, och du kan sedan testa appen i en webbläsare, en simulator/emulator eller en fysisk enhet via Expo Go. För att testa på en fysisk enhet laddar du ner appen Expo Go och skannar QR-koden.
