@@ -129,7 +129,9 @@ graph TD
 ## Screenshots
 
 ![Simulator_Screenshot_-_iPhone_16_Pro_-_2025-05-27_at_09 41 04](https://github.com/user-attachments/assets/2e299352-b717-4e82-bbb4-efcde4b09cb1)
-
+![Simulator_Screenshot_-_iPhone_16_Pro_-_2025-05-27_at_09 37 18](https://github.com/user-attachments/assets/149e482d-ba39-4180-a439-345bd315ef10)
+![Simulator_Screenshot_-_iPhone_16_Pro_-_2025-05-27_at_09 37 21](https://github.com/user-attachments/assets/73651d04-3cbe-4d21-a6e3-bc03beafd123)
+![Simulator_Screenshot_-_iPhone_16_Pro_-_2025-05-27_at_09 37 29](https://github.com/user-attachments/assets/a1900013-f74d-4e11-b43f-4801397e86f5)
 
 
 
