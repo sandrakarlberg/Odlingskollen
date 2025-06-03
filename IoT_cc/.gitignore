@@ -1,0 +1,13 @@
+
+# === PlatformIO (IoT_cc) ===
+IoT_cc/.pio/
+IoT_cc/.vscode/
+IoT_cc/include/arduino_secrets.h
+IoT_cc/ChasChallenge101.code-workspace
+
+# === VS Code global (utanför IoT_cc) ===
+.vscode/
+
+# === OS-specifika skräpfiler ===
+.DS_Store
+Thumbs.db
