@@ -45,11 +45,16 @@ const Login = () => {
       accessible={true}
       accessibilityLabel="Inloggningsskärm"
     >
-      <Image
-        source={require("../assets/icon-plant.png")}
-        style={styles.icon}
-        accessibilityLabel="Appens ikon, en planta"
-      />
+      <View style={styles.header}>
+        <View style={styles.iconWrapper}>
+          <Image
+            source={require("../assets/icon-plant.png")}
+            style={styles.icon}
+            accessibilityLabel="Appens ikon, en planta"
+          />
+        </View>
+        <Text style={styles.headerText}>Odlingskollen</Text>
+      </View>
       <View accessible={true}>
         <TextInput
           placeholder="E-post"
@@ -104,6 +109,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: lightTheme.primary,
   },
+  header: {
+    marginBottom: 70,
+    alignItems: "center",
+  },
+  headerText: {
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 25,
+  },
   input: {
     backgroundColor: lightTheme.secondary,
     borderRadius: 10,
@@ -124,7 +138,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 500,
   },
+  iconWrapper: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#FFFFFF",
+    borderWidth: 10,
+    borderRadius: 100,
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+  },
   icon: {
-    marginBottom: 100,
+    width: 50,
+    height: 50,
   },
 });
