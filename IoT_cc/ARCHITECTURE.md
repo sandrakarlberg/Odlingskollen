@@ -30,6 +30,8 @@ Odlingskollen är ett IoT-baserat system som samlar in data från jordmiljöer (
 ### Begränsning
 - NPK-sensorn togs bort på grund av kommunikationsproblem och bristfälligt dokumenterad databaspecifikation.
 
+![Bild på hårdvara](/IoT_cc/Device.PNG)
+
 ---
 
 ## 2. Backend
