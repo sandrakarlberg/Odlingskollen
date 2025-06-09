@@ -24,7 +24,7 @@ Odlingskollen är ett IoT-baserat system som samlar in data från jordmiljöer (
   - Temperaturgivare  
   - Ljusmätare  
   - Regnsensor  
-- Skickar data via HTTP POST till backend-servern med JSON-payload  
+- Skickar data via HTTP PUT till backend-servern med JSON-payload  
 - Sensoravläsningar sker med jämna intervall
 
 ### Begränsning
