@@ -33,7 +33,7 @@ export default function CategoryCard({ title, plants }) {
       .map((plant, index) => (
         <PlantItem key={index} {...plant} index={index} />
       ));
-  }, [plants]);
+  }, [plants, limit]);
 
   return (
     <View style={styles.card}>
