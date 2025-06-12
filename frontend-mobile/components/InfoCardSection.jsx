@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, FlatList, View } from "react-native";
 import { useEffect, useState } from "react";
 import { fetchPlants } from "../services/api";
 import { useUser } from "../context/UserContext";
@@ -49,16 +49,16 @@ const InfoCardSection = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
+      <FlatList
+        data={plantInfo}
         horizontal
+        keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.scrollContent}
-        accessible={true}
+        showsHorizontalScrollIndicator={false}
         accessibilityRole="scrollbar"
         accessibilityLabel="Informationskort om växthus"
-      >
-        {plantInfo.map((item) => (
+        renderItem={({ item }) => (
           <InfoCard
-            key={item.id}
             title={item.title}
             info={item.info}
             image={item.image}
@@ -66,8 +66,8 @@ const InfoCardSection = () => {
             accessibilityLabel={`${item.title}. ${item.info}`}
             accessibilityRole="summary"
           />
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 };
