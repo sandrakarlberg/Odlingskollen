@@ -9,18 +9,30 @@ import { useMemo } from "react";
 import PlantItem from "../components/PlantItem";
 import { lightTheme } from "../theme/colors";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 export default function CategoryCard({ title, plants }) {
   const navigation = useNavigation();
+  const [limit, setLimit] = useState(3);
 
   const handlePress = () => {
     navigation.navigate("AddPlant");
   };
 
+  const handleShowMore = () => {
+    if (limit < plants.length) {
+      setLimit(limit + 3);
+    } else if (limit >= plants.length) {
+      setLimit(3);
+    }
+  };
+
   const renderedPlants = useMemo(() => {
-    return plants.map((plant, index) => (
-      <PlantItem key={index} {...plant} index={index} />
-    ));
+    return plants
+      .slice(0, limit)
+      .map((plant, index) => (
+        <PlantItem key={index} {...plant} index={index} />
+      ));
   }, [plants]);
 
   return (
@@ -30,9 +42,16 @@ export default function CategoryCard({ title, plants }) {
         <Text style={styles.addButtonText}>Lägg till växt</Text>
       </Pressable>
       {renderedPlants}
-      <TouchableOpacity style={styles.showMoreButton}>
-        <Text style={styles.showMoreText}>Visa mer</Text>
-      </TouchableOpacity>
+      {plants.length > 3 ? (
+        <TouchableOpacity
+          style={styles.showMoreButton}
+          onPress={handleShowMore}
+        >
+          <Text style={styles.showMoreText}>
+            {plants.length <= limit ? "Visa mindre" : "Visa mer"}
+          </Text>
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 }

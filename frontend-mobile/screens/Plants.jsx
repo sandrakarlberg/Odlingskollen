@@ -62,6 +62,9 @@ const Plants = () => {
               { name: "Tomat 1", status: "Healthy", type: "tomato" },
               { name: "Tomat 2", status: "Unhealthy", type: "tomato" },
               { name: "Tomat 3", status: "Healthy", type: "tomato" },
+              { name: "Tomat 4", status: "Healthy", type: "tomato" },
+              { name: "Tomat 5", status: "Unhealthy", type: "tomato" },
+              { name: "Tomat 6", status: "Healthy", type: "tomato" },
             ]}
             style={styles.CategoryCard}
           />
