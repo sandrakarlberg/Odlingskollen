@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { memo } from "react";
 
-const PlantDetailsCards = ({ title, value }) => {
+const PlantDetailsCards = memo(({ title, value }) => {
   const displayValue = value ?? "Ej tillgänglig";
 
   return (
@@ -15,7 +15,7 @@ const PlantDetailsCards = ({ title, value }) => {
       <Text style={styles.value}>{displayValue}</Text>
     </View>
   );
-};
+});
 
 export default PlantDetailsCards;
 
