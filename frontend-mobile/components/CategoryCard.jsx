@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
+import { useMemo } from "react";
 import PlantItem from "../components/PlantItem";
 import { lightTheme } from "../theme/colors";
 import { useNavigation } from "@react-navigation/native";
@@ -16,15 +17,19 @@ export default function CategoryCard({ title, plants }) {
     navigation.navigate("AddPlant");
   };
 
+  const renderedPlants = useMemo(() => {
+    return plants.map((plant, index) => (
+      <PlantItem key={index} {...plant} index={index} />
+    ));
+  }, [plants]);
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{title}</Text>
       <Pressable onPress={handlePress} style={styles.addButton}>
         <Text style={styles.addButtonText}>Lägg till växt</Text>
       </Pressable>
-      {plants.map((plant, index) => (
-        <PlantItem key={index} {...plant} index={index} />
-      ))}
+      {renderedPlants}
       <TouchableOpacity style={styles.showMoreButton}>
         <Text style={styles.showMoreText}>Visa mer</Text>
       </TouchableOpacity>
