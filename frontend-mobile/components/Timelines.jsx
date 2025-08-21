@@ -132,7 +132,10 @@ export default class Timelines extends Component {
               padding: 5,
               borderRadius: 4,
             }}
-            descriptionStyle={{ color: "gray" }}
+            titleStyle={{
+              marginTop: -3,
+            }}
+            descriptionStyle={{ color: "gray", marginBottom: 5 }}
             options={{
               style: { paddingTop: 5 },
             }}

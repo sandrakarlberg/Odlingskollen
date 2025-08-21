@@ -41,7 +41,7 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Dashboard"
+        name="Översikt"
         component={Dashboard}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -54,7 +54,7 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Plants"
+        name="Dina växter"
         component={Plants}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -63,7 +63,7 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="Din profil"
         component={Profile}
         options={{
           tabBarIcon: ({ color, size }) => (
