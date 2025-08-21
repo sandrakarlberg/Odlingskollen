@@ -115,14 +115,8 @@ const PlantDetails = ({ route }) => {
           title="Byt namn"
           variant="accent"
           onPress={updatePlant}
+          style={styles.updateButton}
           accessibilityLabel="Byt namn på växten"
-        />
-        <BigButton
-          title="Ta bort"
-          variant="secondary"
-          onPress={deletePlant}
-          style={styles.deleteButton}
-          accessibilityLabel="Ta bort växten från listan"
         />
         <View
           style={styles.valueSection}
@@ -144,6 +138,13 @@ const PlantDetails = ({ route }) => {
             />
           ))}
         </View>
+        <BigButton
+          title="Ta bort"
+          variant="secondary"
+          onPress={deletePlant}
+          style={styles.deleteButton}
+          accessibilityLabel="Ta bort växten från listan"
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -187,6 +188,9 @@ const styles = StyleSheet.create({
   deleteButton: {
     marginBottom: 20,
     marginTop: 10,
+  },
+  updateButton: {
+    marginBottom: 20,
   },
   valueSection: {
     flexDirection: "row",
