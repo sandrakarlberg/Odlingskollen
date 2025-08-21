@@ -53,43 +53,43 @@ const Plants = () => {
               nitrogen: item.nitrogen_level,
               phosphor: item.phosphor,
               potassium: item.potassium,
-              status: "Healthy",
+              status: "Frisk",
             }))}
           />
           <CategoryCard
             title="Växthus 2"
             plants={[
-              { name: "Tomat 1", status: "Healthy", type: "tomato" },
-              { name: "Tomat 2", status: "Unhealthy", type: "tomato" },
-              { name: "Tomat 3", status: "Healthy", type: "tomato" },
-              { name: "Tomat 4", status: "Healthy", type: "tomato" },
-              { name: "Tomat 5", status: "Unhealthy", type: "tomato" },
-              { name: "Tomat 6", status: "Healthy", type: "tomato" },
+              { name: "Tomat 1", status: "Frisk", type: "tomato" },
+              { name: "Tomat 2", status: "Helt okej", type: "tomato" },
+              { name: "Tomat 3", status: "Frisk", type: "tomato" },
+              { name: "Tomat 4", status: "Frisk", type: "tomato" },
+              { name: "Tomat 5", status: "Helt okej", type: "tomato" },
+              { name: "Tomat 6", status: "Frisk", type: "tomato" },
             ]}
             style={styles.CategoryCard}
           />
           <CategoryCard
             title="Växthus 3"
             plants={[
-              { name: "Citron 1", status: "Dying", type: "lemon" },
-              { name: "Citron 2", status: "Healthy", type: "lemon" },
+              { name: "Citron 1", status: "Döende", type: "lemon" },
+              { name: "Citron 2", status: "Frisk", type: "lemon" },
             ]}
             style={styles.CategoryCard}
           />
           <CategoryCard
             title="Växthus 4"
             plants={[
-              { name: "Citron 1", status: "Dying", type: "lemon" },
-              { name: "Citron 2", status: "Healthy", type: "lemon" },
+              { name: "Citron 1", status: "Döende", type: "lemon" },
+              { name: "Citron 2", status: "Frisk", type: "lemon" },
             ]}
             style={styles.CategoryCard}
           />
           <CategoryCard
             title="Växthus 5"
             plants={[
-              { name: "Tomat 1", status: "Healthy", type: "tomato" },
-              { name: "Tomat 2", status: "Unhealthy", type: "tomato" },
-              { name: "Tomat 3", status: "Healthy", type: "tomato" },
+              { name: "Tomat 1", status: "Frisk", type: "tomato" },
+              { name: "Tomat 2", status: "Helt okej", type: "tomato" },
+              { name: "Tomat 3", status: "Frisk", type: "tomato" },
             ]}
             style={styles.CategoryCard}
           />

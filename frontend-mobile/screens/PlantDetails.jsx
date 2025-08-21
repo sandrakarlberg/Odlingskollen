@@ -60,20 +60,20 @@ const PlantDetails = ({ route }) => {
   ];
 
   const statusBackground =
-    otherParams.status === "Healthy"
+    otherParams.status === "Frisk"
       ? "#3F6133"
-      : otherParams.status === "Unhealthy"
+      : otherParams.status === "Helt okej"
       ? "#FFDE8D"
-      : otherParams.status === "Dying"
+      : otherParams.status === "Döende"
       ? "#FF0000"
       : "grey";
 
   const statusText =
-    otherParams.status === "Healthy"
+    otherParams.status === "Frisk"
       ? "#FFFFFF"
-      : otherParams.status === "Unhealthy"
+      : otherParams.status === "Helt okej"
       ? "#000000"
-      : otherParams.status === "Dying"
+      : otherParams.status === "Döende"
       ? "#FFFFFF"
       : "grey";
 
