@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Image,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { lightTheme } from "../theme/colors";
 import BigButton from "../components/BigButton";
@@ -99,6 +106,11 @@ const PlantDetails = ({ route }) => {
           accessible={true}
           accessibilityLabel={`Växtnamn: ${otherParams.name}. Status: ${otherParams.status}`}
         >
+          <Image
+            source={require("../assets/icon-plant.png")}
+            style={styles.icon}
+            accessibilityLabel="Appens ikon, en planta"
+          />
           <Text style={styles.title}>{otherParams.name}</Text>
           <Text
             style={[
@@ -111,13 +123,13 @@ const PlantDetails = ({ route }) => {
             {otherParams.status}
           </Text>
         </View>
-        <BigButton
+        {/* <BigButton
           title="Byt namn"
           variant="accent"
           onPress={updatePlant}
           style={styles.updateButton}
           accessibilityLabel="Byt namn på växten"
-        />
+        /> */}
         <View
           style={styles.valueSection}
           accessible={true}
@@ -178,7 +190,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#FFFFFF",
     marginVertical: 20,
-    padding: 30,
+    padding: 40,
     borderRadius: 10,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 4 },
@@ -196,5 +208,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
+  },
+  icon: {
+    width: 50,
+    height: 50,
+    margin: "auto",
+    marginBottom: 20,
   },
 });
