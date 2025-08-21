@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    fontWeight: 550,
+    fontWeight: 600,
     textAlign: "center",
   },
   buttonPressed: {

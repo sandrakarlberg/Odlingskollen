@@ -59,11 +59,14 @@ export default function CategoryCard({ title, plants }) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: lightTheme.secondary,
-    padding: 40,
+    padding: 60,
+    marginBottom: -6,
     shadowColor: "#000",
     shadowOpacity: 0.3,
     shadowRadius: 10,
     elevation: 4,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   title: {
     fontSize: 20,

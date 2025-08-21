@@ -39,10 +39,10 @@ const styles = StyleSheet.create({
   container: {
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
+    // shadowColor: "#000000",
+    // shadowOffset: { width: 0, height: 4 },
+    // shadowOpacity: 0.2,
+    // shadowRadius: 6,
     paddingBottom: 50,
   },
   filterContainer: {
